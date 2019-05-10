@@ -4,5 +4,6 @@ public class Operador extends Pessoa {
 
 	protected int codUsuario;
 	protected Turno turno;
+	protected Setor setor;
 	
 }
