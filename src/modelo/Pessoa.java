@@ -9,6 +9,27 @@ public class Pessoa {
 	protected int rg;
 	protected int telefone;
 	protected int dataNasc;
-	protected String Endereço;
+	protected String endereco;
+	public String getNome() {
+		return nome;
+	}
+	public int getCpf() {
+		return cpf;
+	}
+	public int getRg() {
+		return rg;
+	}
+	public int getTelefone() {
+		return telefone;
+	}
+	public int getDataNasc() {
+		return dataNasc;
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	
+	
 	
 }
+
