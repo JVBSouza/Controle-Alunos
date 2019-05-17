@@ -13,6 +13,8 @@ public class AlunoControler {
 	}
 	
 	public Aluno consultar(int id) {
+		
+		
 		return null;
 		
 	}

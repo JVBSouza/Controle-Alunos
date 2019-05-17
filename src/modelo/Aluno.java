@@ -10,7 +10,7 @@ public class Aluno extends Pessoa {
 	
 	public Aluno(String nome, int cpf, int rg, int telefone, int dataNasc, String endereco) {
 		this.nome = nome;
-		this.cpf = cpf;
+		this.cpf = cpf; //cpf tem mais que 11 numeros ver isso
 		this.rg = rg;
 		this.telefone = telefone;
 		this.dataNasc = dataNasc;
