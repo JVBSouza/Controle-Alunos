@@ -19,18 +19,19 @@ public class AlunoRepositorio {
 		String endereco = "'"+aluno.getEndereco()+"'";
 		
 		
-		Connection conn = ConexaoBD.getConexao();
 		Statement stmt = null;
 		String sql = "INSERT INTO alunos " +
-					 "(matricula, nome, rg, cpf, telefone, dataNasc, Endereco, responsavel1, responsavel2) " +
+					 "(matricula, nome, RG, CPF, Telefone, DataNasc, Endereço) " +
 					 "Values ("+matricula+", "+nome+","+rg +", "+cpf+", "+telefone+", "+dataNasc+", "+endereco+ ") ";
-		try {
+		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 		} catch (SQLException ex){
 			// tratar erros
+			System.out.println("Erro:" + ex.getMessage());
 		} finally {
-			
+			 
 		}
+		
 	}
 }
