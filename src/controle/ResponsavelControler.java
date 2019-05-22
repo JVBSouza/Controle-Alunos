@@ -10,7 +10,7 @@ public class ResponsavelControler {
 		ResponsavelRepositorio rep = new ResponsavelRepositorio();
 		rep.persist(responsavel);
 	}
-	
+
 	public void consultar(int id) {
 		ResponsavelRepositorio rep = new ResponsavelRepositorio();
 		rep.find(id);
@@ -25,5 +25,5 @@ public class ResponsavelControler {
 		ResponsavelRepositorio rep = new ResponsavelRepositorio();
 		rep.delete(id);
 	}
-	
+
 }

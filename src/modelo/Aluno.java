@@ -15,7 +15,7 @@ public class Aluno extends Pessoa {
 		this.telefone = telefone;
 		this.dataNasc = dataNasc;
 		this.endereco = endereco;
-		this.matricula = 123;
+		this.matricula = 1;
 	}
 
 	public int getMatricula() {

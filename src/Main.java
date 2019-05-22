@@ -15,6 +15,7 @@ public class Main {
 		updateResponsavel(1);
 		pesquisaResponsavel(1);
 		deleteResponsavel(1);
+
 	}
 	
 	public static void pesquisaAluno() {
