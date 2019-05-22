@@ -11,7 +11,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		executarAluno();
 		executarResponsavel(); 
-		pesquisaResponsavel(131);
+		pesquisaResponsavel(123);
 	}
 	
 	public static void pesquisaAluno() {
