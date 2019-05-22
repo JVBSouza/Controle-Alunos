@@ -13,6 +13,7 @@ public class Responsavel extends Pessoa {
 		this.dataNasc = dataNasc;
 		this.endereco = endereco;
 		this.parentesco = parentesco;
+		//Parentesco.valueOf("PAI") transforma string em enum
 		//this.codResponsavel = 123;
 	}
 

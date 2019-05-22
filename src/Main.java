@@ -9,9 +9,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		executarAluno();
+		//executarAluno();
 		executarResponsavel(); 
-		pesquisaResponsavel(123);
+		pesquisaResponsavel(1);
+		updateResponsavel(1);
+		pesquisaResponsavel(1);
+		deleteResponsavel(1);
+
 	}
 	
 	public static void pesquisaAluno() {
@@ -21,6 +25,16 @@ public class Main {
 	public static void pesquisaResponsavel(int id) {
 		ResponsavelControler controle = new ResponsavelControler();
 		controle.consultar(id);
+	}
+	
+	public static void updateResponsavel(int id) {
+		ResponsavelControler controle = new ResponsavelControler();
+		controle.update(id);
+	}
+	
+	public static void deleteResponsavel(int id) {
+		ResponsavelControler controle = new ResponsavelControler();
+		controle.delete(id);
 	}
 
 	public static void executarResponsavel() {

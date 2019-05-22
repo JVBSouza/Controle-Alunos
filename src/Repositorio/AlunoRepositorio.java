@@ -18,7 +18,6 @@ public class AlunoRepositorio {
 		int telefone = aluno.getTelefone();
 		String endereco = "'"+aluno.getEndereco()+"'";
 		
-		
 		Statement stmt = null;
 		String sql = "INSERT INTO alunos " +
 					 "(matricula, nome, RG, CPF, Telefone, DataNasc, Endereço) " +
@@ -26,6 +25,7 @@ public class AlunoRepositorio {
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
+			
 		} catch (SQLException ex){
 			// tratar erros
 			System.out.println("Erro:" + ex.getMessage());
