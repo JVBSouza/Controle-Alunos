@@ -1,13 +1,13 @@
 package controle;
 
-import Repositorio.AlunoRepositorio;
+import Repositorio.AlunoRepository;
 import modelo.Aluno;
 
 public class AlunoControler {
 
 	public void persistir(Aluno aluno) {
 		System.out.println("imprimindo");
-		AlunoRepositorio rep = new AlunoRepositorio();
+		AlunoRepository rep = new AlunoRepository();
 		rep.persist(aluno);
 	}
 

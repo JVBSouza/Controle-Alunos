@@ -1,17 +1,20 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class Responsavel extends Pessoa {
 	
-	protected int codResponsavel;
-	protected Parentesco parentesco;
+	private int codResponsavel;
+	private String parentesco;
 	
-	public Responsavel(String nome, int cpf, int rg, int telefone, int dataNasc, String endereco, Parentesco parentesco) {
-		this.nome = nome;
-		this.cpf = cpf; //cpf tem mais que 11 numeros ver isso
-		this.rg = rg;
-		this.telefone = telefone;
-		this.dataNasc = dataNasc;
-		this.endereco = endereco;
+	public Responsavel(String nome, String cpf, int rg, String telefone, LocalDate datanasc, String endereco, String parentesco) {
+		this.setNome(nome);
+		this.setRg(rg);
+		this.setCpf(cpf); //cpf tem mais que 11 numeros ver isso
+		this.setDatanasc(datanasc);
+		this.setEndereco(endereco);
+		this.setTelefone(telefone);
+		
 		this.parentesco = parentesco;
 		//Parentesco.valueOf("PAI") transforma string em enum
 		//this.codResponsavel = 123;
@@ -21,7 +24,7 @@ public class Responsavel extends Pessoa {
 		return codResponsavel;
 	}
 
-	public Parentesco getParentesco() {
+	public String getParentesco() {
 		return parentesco;
 	}
 	

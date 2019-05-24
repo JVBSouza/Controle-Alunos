@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import modelo.Aluno;
 
-public class AlunoRepositorio {
+public class AlunoRepository {
 
 	public void persist(Aluno aluno) {
 		int matricula = aluno.getMatricula();
