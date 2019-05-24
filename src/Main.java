@@ -14,9 +14,9 @@ public class Main {
 		//executarAluno();
 		executarResponsavel(); 
 		pesquisaResponsavel(1);
-//		updateResponsavel(1);
-//		pesquisaResponsavel(1);
-//		deleteResponsavel(1);
+		updateResponsavel(1);
+		pesquisaResponsavel(1);
+		deleteResponsavel(1);
 
 	}
 	

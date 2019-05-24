@@ -92,7 +92,7 @@ public class ResponsavelRepository {
 		scan.close();
 		
 		PreparedStatement ps = null;
-		String sql = "UPDATE responsaveis SET nome=? , RG= ?, CPF=? , Telefone=? , DataNasc=? , Endereço=? , Parentesco=? where CodResp = ?";
+		String sql = "UPDATE responsaveis SET nome=? , rg= ?, cpf=? , telefone=? , datanasc=? , endereco=? , parentesco=? where codresp = ?";
 				
 		try (Connection conn = ConexaoBD.getConexao();) {
 			ps = conn.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class ResponsavelRepository {
 			ps.setInt(2, 123456789);
 			ps.setString(3, "12345678901");
 			ps.setString(4, novoTel);
-			ps.setInt(5, 20190101);
+			ps.setDate(5, java.sql.Date.valueOf(LocalDate.of(1994, 03, 20)));
 			ps.setString(6, "Novo endereço");
 			ps.setString(7, "PAI");
 			ps.setInt(8, id);
