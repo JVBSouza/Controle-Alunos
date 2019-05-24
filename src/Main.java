@@ -1,7 +1,8 @@
+import java.time.LocalDate;
+
 import controle.AlunoControler;
-import controle.ResponsavelControler;
+import controle.ResponsavelController;
 import modelo.Aluno;
-import modelo.Parentesco;
 import modelo.Responsavel;
 
 
@@ -9,12 +10,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		//executarAluno();
 		executarResponsavel(); 
 		pesquisaResponsavel(1);
-		updateResponsavel(1);
-		pesquisaResponsavel(1);
-		deleteResponsavel(1);
+//		updateResponsavel(1);
+//		pesquisaResponsavel(1);
+//		deleteResponsavel(1);
 
 	}
 	
@@ -23,24 +25,24 @@ public class Main {
 	}
 	
 	public static void pesquisaResponsavel(int id) {
-		ResponsavelControler controle = new ResponsavelControler();
-		controle.consultar(id);
+		ResponsavelController controle = new ResponsavelController();
+		controle.find(id);
 	}
 	
 	public static void updateResponsavel(int id) {
-		ResponsavelControler controle = new ResponsavelControler();
+		ResponsavelController controle = new ResponsavelController();
 		controle.update(id);
 	}
 	
 	public static void deleteResponsavel(int id) {
-		ResponsavelControler controle = new ResponsavelControler();
+		ResponsavelController controle = new ResponsavelController();
 		controle.delete(id);
 	}
 
 	public static void executarResponsavel() {
 		// criar objeto Responsavel
-		Responsavel responsavel = new Responsavel("Diferente", 123456789, 1234567, 999998888, 12,"Rua responsavel", Parentesco.PAI); 
-		ResponsavelControler controle = new ResponsavelControler();
+		Responsavel responsavel = new Responsavel("Diferente", "99988877766", 123456789, "988887777", LocalDate.of(2019, 02, 05),"Rua responsavel", "Pai"); 
+		ResponsavelController controle = new ResponsavelController();
 		controle.persist(responsavel);
 	}
 	
