@@ -11,12 +11,12 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//executarAluno();
-		executarResponsavel(); 
-		pesquisaResponsavel(1);
-		updateResponsavel(1);
-		pesquisaResponsavel(1);
-		deleteResponsavel(1);
+		executarAluno();
+		//executarResponsavel(); 
+		//pesquisaResponsavel(1);
+		//updateResponsavel(1);
+		//pesquisaResponsavel(1);
+		//deleteResponsavel(1);
 
 	}
 	
@@ -48,9 +48,20 @@ public class Main {
 	
 	public static void executarAluno() {
 		// criar objeto Aluno
-		Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
+		Aluno aluno = new Aluno("Vínicius", "00187645512", 56434567, "(48) 98752-3567",LocalDate.of(1997, 05, 20),"Rua dos bobos numero 0");
+		//Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
 		AlunoControler controle = new AlunoControler();
 		controle.persistir(aluno);
+	}
+	
+	public static void buscarAluno(int matricula) {
+		AlunoControler controle = new AlunoControler();
+		controle.buscar(matricula);
+	}
+	
+	public static void deletarAluno(int matricula) {
+		AlunoControler controle = new AlunoControler();
+		controle.deletar(matricula);
 	}
 	
 }
