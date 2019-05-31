@@ -1,8 +1,11 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import controle.AlunoControler;
+import controle.RegistroController;
 import controle.ResponsavelController;
 import modelo.Aluno;
+import modelo.Registro;
 import modelo.Responsavel;
 
 
@@ -12,12 +15,13 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		//executarAluno();
-		executarResponsavel(); 
-		pesquisaResponsavel(1);
-		updateResponsavel(1);
-		pesquisaResponsavel(1);
-		deleteResponsavel(1);
-
+//		executarResponsavel(); 
+//		pesquisaResponsavel(1);
+//		updateResponsavel(1);
+//		pesquisaResponsavel(1);
+//		deleteResponsavel(1);
+		executarRegistro();
+		findRegistro(1);
 	}
 	
 	public static void pesquisaAluno() {
@@ -51,6 +55,18 @@ public class Main {
 		Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
 		AlunoControler controle = new AlunoControler();
 		controle.persistir(aluno);
+	}
+	
+	public static void executarRegistro() {
+		Registro reg = new Registro(1, 1, 12346789, LocalDateTime.now(), "Entrada");
+		RegistroController controle = new RegistroController();
+		controle.persist(reg);
+	}
+	
+	public static void findRegistro(int id) {
+		RegistroController controle = new RegistroController();{
+		controle.find(id);
+		}
 	}
 	
 }
