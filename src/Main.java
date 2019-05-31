@@ -52,7 +52,8 @@ public class Main {
 	
 	public static void executarAluno() {
 		// criar objeto Aluno
-		Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
+		Aluno aluno = new Aluno("Vínicius", "00187645512", 56434567, "(48) 98752-3567",LocalDate.of(1997, 05, 20),"Rua dos bobos numero 0");
+		//Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
 		AlunoControler controle = new AlunoControler();
 		controle.persistir(aluno);
 	}
@@ -64,9 +65,19 @@ public class Main {
 	}
 	
 	public static void findRegistro(int id) {
-		RegistroController controle = new RegistroController();{
+		RegistroController controle = new RegistroController();
 		controle.find(id);
 		}
+
+	public static void buscarAluno(int matricula) {
+		AlunoControler controle = new AlunoControler();
+		controle.buscar(matricula);
+	}
+	
+	public static void deletarAluno(int matricula) {
+		AlunoControler controle = new AlunoControler();
+		controle.deletar(matricula);
+
 	}
 	
 }
