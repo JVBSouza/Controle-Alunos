@@ -37,7 +37,7 @@ public class inicial {
 	 */
 	public inicial() {
 		initialize();
-		this.cadastroAluno = new cadastroAluno();
+		this.cadastroAluno = new CadastroAluno();
 		
 		ResponsavelController respcontrol = new ResponsavelController();
 		
