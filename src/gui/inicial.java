@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 
 public class inicial {
 
-	private JFrame frame;
+	private JFrame frmTelaInicial;
 	private JFrame cadastroAluno;
 	private JFrame cadastroResponsavel;
 
@@ -24,7 +24,7 @@ public class inicial {
 			public void run() {
 				try {
 					inicial window = new inicial();
-					window.frame.setVisible(true);
+					window.frmTelaInicial.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,10 +48,11 @@ public class inicial {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmTelaInicial = new JFrame();
+		frmTelaInicial.setTitle("Tela inicial");
+		frmTelaInicial.setBounds(100, 100, 450, 300);
+		frmTelaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTelaInicial.getContentPane().setLayout(null);
 		
 		JButton btnCadastroDeAluno = new JButton("Cadastro de Aluno");
 		btnCadastroDeAluno.addMouseListener(new MouseAdapter() {
@@ -62,7 +63,7 @@ public class inicial {
 			}
 		});
 		btnCadastroDeAluno.setBounds(32, 34, 155, 23);
-		frame.getContentPane().add(btnCadastroDeAluno);
+		frmTelaInicial.getContentPane().add(btnCadastroDeAluno);
 		
 		JButton btnCadastroDeResponsvel = new JButton("Cadastro de Responsável");
 		btnCadastroDeResponsvel.addMouseListener(new MouseAdapter() {
@@ -73,6 +74,6 @@ public class inicial {
 			}
 		});
 		btnCadastroDeResponsvel.setBounds(32, 88, 155, 23);
-		frame.getContentPane().add(btnCadastroDeResponsvel);
+		frmTelaInicial.getContentPane().add(btnCadastroDeResponsvel);
 	}
 }
