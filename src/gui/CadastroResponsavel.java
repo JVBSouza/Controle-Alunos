@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class CadastroResponsavel extends JFrame {
 
@@ -110,5 +111,9 @@ public class CadastroResponsavel extends JFrame {
 		textField_4.setBounds(116, 156, 166, 20);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
+		
+		JButton btnCadastrar = new JButton("Cadastrar movo responsável");
+		btnCadastrar.setBounds(115, 218, 191, 23);
+		contentPane.add(btnCadastrar);
 	}
 }
