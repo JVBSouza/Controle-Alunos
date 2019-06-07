@@ -2,13 +2,16 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -16,11 +19,11 @@ import javax.swing.JButton;
 public class CadastroResponsavel extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField nome;
+	private JFormattedTextField cpf;
+	private JTextField rg;
+	private JTextField telefone;
+	private JTextField endereco;
 
 	/**
 	 * Launch the application.
@@ -55,16 +58,18 @@ public class CadastroResponsavel extends JFrame {
 		lblNome.setBounds(66, 33, 44, 20);
 		contentPane.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setToolTipText("Nome do responsável");
-		textField.setBounds(115, 33, 167, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		nome = new JTextField();
+		nome.setToolTipText("Nome do responsável");
+		nome.setBounds(115, 33, 167, 20);
+		contentPane.add(nome);
+		nome.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCpf.setBounds(39, 66, 71, 14);
 		contentPane.add(lblCpf);
+		
+		
 		
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -92,27 +97,36 @@ public class CadastroResponsavel extends JFrame {
 		comboBox.setBounds(115, 187, 95, 20);
 		contentPane.add(comboBox);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(115, 63, 167, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		cpf = new JFormattedTextField();
+		cpf.setBounds(115, 63, 167, 20);
+		contentPane.add(cpf);
+		cpf.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(115, 94, 167, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		MaskFormatter cpfMask;
+		try {
+			cpfMask = new MaskFormatter("###.###.###-##");
+			cpfMask.install(cpf);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(116, 127, 166, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		rg = new JTextField();
+		rg.setBounds(115, 94, 167, 20);
+		contentPane.add(rg);
+		rg.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(116, 156, 166, 20);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		telefone = new JTextField();
+		telefone.setBounds(116, 127, 166, 20);
+		contentPane.add(telefone);
+		telefone.setColumns(10);
 		
-		JButton btnCadastrar = new JButton("Cadastrar movo responsável");
+		endereco = new JTextField();
+		endereco.setBounds(116, 156, 166, 20);
+		contentPane.add(endereco);
+		endereco.setColumns(10);
+		
+		JButton btnCadastrar = new JButton("Cadastrar novo responsável");
 		btnCadastrar.setBounds(115, 218, 191, 23);
 		contentPane.add(btnCadastrar);
 	}
