@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import controle.AlunoControler;
+import controle.AlunoController;
 import controle.RegistroController;
 import controle.ResponsavelController;
 import modelo.Aluno;
@@ -54,8 +54,8 @@ public class Main {
 		// criar objeto Aluno
 		Aluno aluno = new Aluno("Vínicius", "00187645512", 56434567, "(48) 98752-3567",LocalDate.of(1997, 05, 20),"Rua dos bobos numero 0");
 		//Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
-		AlunoControler controle = new AlunoControler();
-		controle.persistir(aluno);
+		AlunoController controle = new AlunoController();
+		controle.persist(aluno);
 	}
 	
 	public static void executarRegistro() {
@@ -70,13 +70,13 @@ public class Main {
 		}
 
 	public static void buscarAluno(int matricula) {
-		AlunoControler controle = new AlunoControler();
-		controle.buscar(matricula);
+		AlunoController controle = new AlunoController();
+		controle.find(matricula);
 	}
 	
 	public static void deletarAluno(int matricula) {
-		AlunoControler controle = new AlunoControler();
-		controle.deletar(matricula);
+		AlunoController controle = new AlunoController();
+		controle.delete(matricula);
 
 	}
 	
