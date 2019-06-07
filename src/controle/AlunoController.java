@@ -4,26 +4,26 @@ import Repositorio.AlunoRepository;
 import Repositorio.ResponsavelRepository;
 import modelo.Aluno;
 
-public class AlunoControler {
+public class AlunoController {
 
-	public void persistir(Aluno aluno) {
+	public void persist(Aluno aluno) {
 		System.out.println("imprimindo");
 		System.out.println(aluno.toString());
 		AlunoRepository rep = new AlunoRepository();
 		rep.persist(aluno);
 	}
 
-	public void buscar(int matricula) {
+	public void find(int matricula) {
 		AlunoRepository rep = new AlunoRepository();
-		rep.buscar(matricula);
+		rep.find(matricula);
 	}
 	
-	public void atualizar(int id) {
+	public void update(int id) {
 		AlunoRepository rep = new AlunoRepository();
-		rep.atualizar(id);
+		rep.update(id);
 	}
 	
-	public void deletar(int id) {
+	public void delete(int id) {
 		AlunoRepository rep = new AlunoRepository();
 		rep.delete(id);
 	}

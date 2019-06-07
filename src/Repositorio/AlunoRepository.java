@@ -16,14 +16,14 @@ public class AlunoRepository {
 		int matricula = aluno.getMatricula();
 		String nome = "'"+aluno.getNome()+"'";
 		int rg = aluno.getRg();
-		String cpf = aluno.getCpf();
+		String cpf = "'"+aluno.getCpf()+"'";
 		LocalDate dataNasc = aluno.getDatanasc();
-		String telefone = aluno.getTelefone();
+		String telefone = "'"+aluno.getTelefone()+"'";
 		String endereco = "'"+aluno.getEndereco()+"'";
 		
 		Statement stmt = null;
-		String sql = "INSERT INTO alunos(matricula, nome, RG, CPF, Telefone, DataNasc, Endere�o) Values (" +
-					 matricula+", "+nome+","+rg +", "+cpf+", "+telefone+", "+dataNasc+", "+endereco+ ") ";
+		String sql = "INSERT INTO alunos(matricula, nome, rg, cpf, telefone, datanasc, endereco) Values (" +
+					 1 +"," + nome+","+rg +", "+cpf+", "+telefone+", "+dataNasc+", "+endereco+ ") ";
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -37,7 +37,7 @@ public class AlunoRepository {
 		
 	}
 
-	public void buscar(int matricula) {
+	public void find(int matricula) {
 		Statement stmt = null;
 		String sql = "SELECT * FROM aluno where matricula ="+matricula+";";
 		ResultSet rs = null;
@@ -72,7 +72,7 @@ public class AlunoRepository {
 			
 	}
 
-	public void atualizar(int matricula ) {
+	public void update(int matricula ) {
 		Scanner scan = new Scanner(System.in);
 		//nome, RG, CPF, Telefone, DataNasc, Endereço
 		System.out.println("Digite o novo nome");
