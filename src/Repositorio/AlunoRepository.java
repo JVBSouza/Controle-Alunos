@@ -13,33 +13,40 @@ import modelo.Aluno;
 public class AlunoRepository {
 
 	public void persist(Aluno aluno) {
-		int matricula = aluno.getMatricula();
-		String nome = "'"+aluno.getNome()+"'";
-		int rg = aluno.getRg();
-		String cpf = "'"+aluno.getCpf()+"'";
-		LocalDate dataNasc = aluno.getDatanasc();
-		String telefone = "'"+aluno.getTelefone()+"'";
-		String endereco = "'"+aluno.getEndereco()+"'";
+				
+		PreparedStatement ps = null;
+		String sql = "INSERT INTO alunos (matricula, nome, rg, cpf, telefone, datanasc, endereco) VALUES " +
+					"(?, ?, ?, ? , ?, ?, ?)";
 		
-		Statement stmt = null;
-		String sql = "INSERT INTO alunos(matricula, nome, rg, cpf, telefone, datanasc, endereco) Values (" +
-					 1 +"," + nome+","+rg +", "+cpf+", "+telefone+", "+dataNasc+", "+endereco+ ") ";
+//		Statement stmt = null;
+//		String sql = "INSERT INTO responsaveis " +
+//					 "(Nome, RG, CPF, Telefone, DataNasc, Endere�o, Parentesco) " +
+//					 "Values ("+nome+","+rg +", "+cpf+", "+telefone+", "+datanasc+", "+endereco+", "+parentesco+ ") ";
 		try (Connection conn = ConexaoBD.getConexao();) {
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
+//			stmt = conn.createStatement();
+//			stmt.executeUpdate(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, 1);
+			ps.setString(2, aluno.getNome());
+			ps.setInt(3, aluno.getRg());
+			ps.setString(4, aluno.getCpf());
+			ps.setString(5, aluno.getTelefone());
+			ps.setDate(6, java.sql.Date.valueOf(aluno.getDatanasc()));
+			ps.setString(7, aluno.getEndereco());
+			ps.executeUpdate();
 			
 		} catch (SQLException ex){
 			// tratar erros
 			System.out.println("Erro:" + ex.getMessage());
 		} finally {
-			 
+			
 		}
 		
 	}
 
 	public void find(int matricula) {
 		Statement stmt = null;
-		String sql = "SELECT * FROM aluno where matricula ="+matricula+";";
+		String sql = "SELECT * FROM aluno where matricula ="+matricula;
 		ResultSet rs = null;
 		
 		int valorMatricula;

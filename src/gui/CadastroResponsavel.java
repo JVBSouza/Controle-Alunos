@@ -3,11 +3,19 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import controle.AlunoController;
+import controle.ResponsavelController;
+import modelo.Aluno;
+import modelo.Responsavel;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -15,6 +23,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CadastroResponsavel extends JFrame {
 
@@ -22,7 +32,7 @@ public class CadastroResponsavel extends JFrame {
 	private JTextField nome;
 	private JFormattedTextField cpf;
 	private JTextField rg;
-	private JTextField telefone;
+	private JFormattedTextField telefone;
 	private JTextField endereco;
 
 	/**
@@ -55,50 +65,48 @@ public class CadastroResponsavel extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNome.setBounds(66, 33, 44, 20);
+		lblNome.setBounds(39, 10, 96, 17);
 		contentPane.add(lblNome);
 		
 		nome = new JTextField();
 		nome.setToolTipText("Nome do responsável");
-		nome.setBounds(115, 33, 167, 20);
+		nome.setBounds(145, 10, 165, 17);
 		contentPane.add(nome);
 		nome.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCpf.setBounds(39, 66, 71, 14);
+		lblCpf.setBounds(39, 35, 96, 17);
 		contentPane.add(lblCpf);
-		
-		
 		
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblRg.setBounds(49, 97, 61, 14);
+		lblRg.setBounds(39, 60, 96, 17);
 		contentPane.add(lblRg);
 		
 		JLabel lblNewLabel = new JLabel("Telefone:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(40, 130, 71, 14);
+		lblNewLabel.setBounds(39, 85, 96, 17);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblEndereo = new JLabel("Endereço:");
 		lblEndereo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEndereo.setBounds(40, 152, 71, 29);
+		lblEndereo.setBounds(39, 135, 96, 17);
 		contentPane.add(lblEndereo);
 		
 		JLabel lblParentesco = new JLabel("Parentesco:");
 		lblParentesco.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblParentesco.setBounds(38, 187, 72, 20);
+		lblParentesco.setBounds(39, 160, 96, 17);
 		contentPane.add(lblParentesco);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"PAI", "MÃE", "AVÓ", "AVÔ"}));
-		comboBox.setMaximumRowCount(4);
-		comboBox.setBounds(115, 187, 95, 20);
-		contentPane.add(comboBox);
+		JComboBox parentesco = new JComboBox();
+		parentesco.setModel(new DefaultComboBoxModel(new String[] {"Pai", "Mãe", "Avó", "Avô"}));
+		parentesco.setMaximumRowCount(4);
+		parentesco.setBounds(145, 160, 165, 17);
+		contentPane.add(parentesco);
 		
 		cpf = new JFormattedTextField();
-		cpf.setBounds(115, 63, 167, 20);
+		cpf.setBounds(145, 35, 165, 17);
 		contentPane.add(cpf);
 		cpf.setColumns(10);
 		
@@ -112,22 +120,70 @@ public class CadastroResponsavel extends JFrame {
 		}
 		
 		rg = new JTextField();
-		rg.setBounds(115, 94, 167, 20);
+		rg.setBounds(145, 60, 165, 17);
 		contentPane.add(rg);
 		rg.setColumns(10);
 		
-		telefone = new JTextField();
-		telefone.setBounds(116, 127, 166, 20);
+		telefone = new JFormattedTextField();
+		telefone.setBounds(145, 85, 165, 17);
 		contentPane.add(telefone);
 		telefone.setColumns(10);
 		
+		MaskFormatter telefoneMask;
+		try {
+			telefoneMask = new MaskFormatter("(##) #####-####");
+			telefoneMask.install(telefone);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		endereco = new JTextField();
-		endereco.setBounds(116, 156, 166, 20);
+		endereco.setBounds(145, 135, 165, 17);
 		contentPane.add(endereco);
 		endereco.setColumns(10);
 		
+		JLabel lblNewLabel_1 = new JLabel("Data de Nascimento:");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setBounds(10, 110, 125, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JFormattedTextField dataNasc = new JFormattedTextField();
+		dataNasc.setBounds(145, 110, 165, 17);
+		contentPane.add(dataNasc);
+		
+		MaskFormatter dataMask;
+		try {
+			dataMask = new MaskFormatter("##/##/####");
+			dataMask.install(dataNasc);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		JButton btnCadastrar = new JButton("Cadastrar novo responsável");
-		btnCadastrar.setBounds(115, 218, 191, 23);
+		btnCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String vNome = nome.getText();
+				String vCpf = cpf.getText();
+				int vRg = Integer.parseInt(rg.getText());
+				String vTelefone = telefone.getText();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				LocalDate vDataNasc = LocalDate.parse(dataNasc.getText(), formatter);
+				String vendereco = endereco.getText();
+				String vparentesco = (String) parentesco.getSelectedItem();
+				
+				System.out.println(vparentesco);
+				
+				Responsavel responsavel = new Responsavel(vNome, vCpf, vRg, vTelefone, vDataNasc, vendereco, vparentesco);
+				ResponsavelController control = new ResponsavelController();
+//				
+				control.persist(responsavel);
+			}
+		});
+		btnCadastrar.setBounds(115, 188, 191, 53);
 		contentPane.add(btnCadastrar);
+		
 	}
 }
