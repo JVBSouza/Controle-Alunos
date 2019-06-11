@@ -44,31 +44,36 @@ public class AlunoRepository {
 		
 	}
 
-	public void find(int matricula) {
+	public Aluno find(int matricula) {
 		Statement stmt = null;
-		String sql = "SELECT * FROM aluno where matricula ="+matricula;
+		String sql = "SELECT * FROM alunos where matricula ="+matricula;
 		ResultSet rs = null;
 		
 		int valorMatricula;
 		String nome;
-		int RG;
-		String CPF;
-		String Telefone;
-		LocalDate datanasc;
-		String Endereco;
+		int rg;
+		String cpf;
+		String telefone;
+		LocalDate dataNasc;
+		String endereco;
+		
+		Aluno aluno = null;
 		
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
+			if (rs.next()) {
 				valorMatricula = rs.getInt("matricula");
 				nome = rs.getString("nome");
-				RG = rs.getInt("rg");
-				CPF = rs.getString("cpf");
-				Telefone = rs.getString("telefone");
-				datanasc = rs.getDate("datanasc").toLocalDate();
-				Endereco = rs.getString("endereco");
-				System.out.println(valorMatricula +" "+ nome +" "+ RG +" "+ CPF +" "+ Telefone +" "+ datanasc +" "+ Endereco);
+				rg = rs.getInt("rg");
+				cpf = rs.getString("cpf");
+				telefone = rs.getString("telefone");
+				dataNasc = rs.getDate("datanasc").toLocalDate();
+				endereco = rs.getString("endereco");
+				
+				aluno = new Aluno(nome, cpf, rg, telefone, dataNasc, endereco);
+				
+//				System.out.println(valorMatricula +" "+ nome +" "+ RG +" "+ CPF +" "+ Telefone +" "+ datanasc +" "+ Endereco);
 			}
 		} catch (SQLException ex){
 			// tratar erros
@@ -76,7 +81,9 @@ public class AlunoRepository {
 		} finally {
 			
 		}
-			
+		
+		return aluno;
+		
 	}
 
 	public void update(int matricula ) {
