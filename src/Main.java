@@ -35,7 +35,7 @@ public class Main {
 	
 	public static void updateResponsavel(int id) {
 		ResponsavelController controle = new ResponsavelController();
-		controle.update(id);
+		//controle.update(id);
 	}
 	
 	public static void deleteResponsavel(int id) {

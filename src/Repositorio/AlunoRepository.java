@@ -86,45 +86,24 @@ public class AlunoRepository {
 		
 	}
 
-	public void update(int matricula ) {
-		Scanner scan = new Scanner(System.in);
-		//nome, RG, CPF, Telefone, DataNasc, Endereço
-		System.out.println("Digite o novo nome");
-		String novoNome = scan.next();
-		System.out.println("Digite um novo telefone");
-		String novoTel = scan.next();
-		System.out.println("Digite um novo RG");
-		int novoRG = scan.nextInt();
-		System.out.println("Digite um novo CPF");
-		String novoCPF = scan.next();
-		System.out.println("Digite um novo Endereco");
-		String novoEndereco = scan.next();
-//		System.out.println("Digite a nova Data de Nascimento");
-//		LocalDate novaData = scan.hasNext();
-		//TEM Q VER COMO PEGAR A DATA DE NASCIMENTO
-		scan.close();
-		
+	public void update(int matricula, Aluno aluno) {
 		PreparedStatement ps = null;
-		String sql = "UPDATE alunos SET nome=? , rg= ?, cpf=? , telefone=? ,  endereco=? where matricula = ?";
+		String sql = "UPDATE alunos SET nome=?, rg= ?, cpf=?, telefone=?, datanasc=?, endereco=? where matricula = ?";
 				
 		try (Connection conn = ConexaoBD.getConexao();) {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, novoNome);
-			ps.setInt(2, novoRG);
-			ps.setString(3, novoCPF);
-			ps.setString(4, novoTel);
-//			ps.setDate(5, java.sql.Date.valueOf(LocalDate.of(1994, 03, 20))); TEM Q ADICIONAR A DATA DEPOIS NO SQL
-			ps.setString(5, novoEndereco);
-			ps.setInt(6, matricula);
+			ps.setString(1, aluno.getNome());
+			ps.setInt(2, aluno.getRg());
+			ps.setString(3, aluno.getCpf());
+			ps.setString(4, aluno.getTelefone());
+			ps.setDate(5, java.sql.Date.valueOf(aluno.getDatanasc()));
+			ps.setString(6, aluno.getEndereco());
+			ps.setInt(7, matricula);
 			ps.executeUpdate();
 			
 		} catch (SQLException ex){
-			// tratar erros
 			System.out.println("Erro:" + ex.getMessage());
-			
-		} finally {
-			
-		}
+		} finally {		}
 	}
 
 	public void delete(int matricula) {

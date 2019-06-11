@@ -88,27 +88,27 @@ public class ResponsavelRepository {
 		
 	}
 	
-	public void update(int id) {
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("Digite o novo nome");
-		String novoNome = scan.next();
-		System.out.println("Digite um novo telefone");
-		String novoTel = scan.next();
-		scan.close();
+	public void update(int id, Responsavel resp) {
+//		Scanner scan = new Scanner(System.in);
+//		
+//		System.out.println("Digite o novo nome");
+//		String novoNome = scan.next();
+//		System.out.println("Digite um novo telefone");
+//		String novoTel = scan.next();
+//		scan.close();
 		
 		PreparedStatement ps = null;
 		String sql = "UPDATE responsaveis SET nome=? , rg= ?, cpf=? , telefone=? , datanasc=? , endereco=? , parentesco=? where codresp = ?";
 				
 		try (Connection conn = ConexaoBD.getConexao();) {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, novoNome);
-			ps.setInt(2, 123456789);
-			ps.setString(3, "12345678901");
-			ps.setString(4, novoTel);
-			ps.setDate(5, java.sql.Date.valueOf(LocalDate.of(1994, 03, 20)));
-			ps.setString(6, "Novo endere�o");
-			ps.setString(7, "PAI");
+			ps.setString(1, resp.getNome());
+			ps.setInt(2, resp.getRg());
+			ps.setString(3, resp.getCpf());
+			ps.setString(4, resp.getTelefone());
+			ps.setDate(5, java.sql.Date.valueOf(resp.getDatanasc()));
+			ps.setString(6, resp.getEndereco());
+			ps.setString(7, resp.getParentesco());
 			ps.setInt(8, id);
 			ps.executeUpdate();
 			

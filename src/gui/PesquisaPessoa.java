@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import controle.AlunoController;
 import controle.ResponsavelController;
@@ -18,10 +19,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PesquisaPessoa extends JFrame {
 
@@ -30,7 +38,7 @@ public class PesquisaPessoa extends JFrame {
 	private JTextField nome;
 	private JTextField cpf;
 	private JTextField rg;
-	private JTextField telefone;
+	private JFormattedTextField telefone;
 	private JTextField dataNasc;
 	private JTextField endereco;
 	private JTextField resp1;
@@ -38,6 +46,8 @@ public class PesquisaPessoa extends JFrame {
 	private final ButtonGroup pessoa = new ButtonGroup();
 	private JTextField parentesco;
 	private final ButtonGroup action = new ButtonGroup();
+	private Aluno aluno;
+	private Responsavel responsavel;
 
 	/**
 	 * Launch the application.
@@ -145,12 +155,12 @@ public class PesquisaPessoa extends JFrame {
 		contentPane.add(rg);
 		rg.setColumns(10);
 		
-		telefone = new JTextField();
+		telefone = new JFormattedTextField();
 		telefone.setEditable(false);
 		telefone.setBounds(140, 135, 140, 20);
 		contentPane.add(telefone);
 		telefone.setColumns(10);
-		
+				
 		dataNasc = new JTextField();
 		dataNasc.setEditable(false);
 		dataNasc.setBounds(140, 155, 140, 20);
@@ -186,66 +196,140 @@ public class PesquisaPessoa extends JFrame {
 		contentPane.add(parentesco);
 		parentesco.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Procurar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		
+		JButton btnProcurar = new JButton("Procurar");
+		JButton btnDeletar = new JButton("Deletar");
+		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnEditar = new JButton("Editar");
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (rdbtnAluno.isSelected()) {
+					AlunoController control = new AlunoController();
+					
+					aluno.setNome(nome.getText());
+					aluno.setCpf(cpf.getText());
+					aluno.setRg(Integer.parseInt(rg.getText()));
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					aluno.setDatanasc(LocalDate.parse(dataNasc.getText(), formatter));
+					aluno.setEndereco(endereco.getText());
+					//aluno.setResponsavel1(resp1.);
+					
+					control.update(Integer.parseInt(id.getText()), aluno);
+				} else if (rdbtnResponsavel.isSelected()) {
+					ResponsavelController control = new ResponsavelController();
+					
+					responsavel.setNome(nome.getText());
+					responsavel.setCpf(cpf.getText());
+					responsavel.setRg(Integer.parseInt(rg.getText()));
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					responsavel.setDatanasc(LocalDate.parse(dataNasc.getText(), formatter));
+					responsavel.setEndereco(endereco.getText());
+					responsavel.setParentesco(parentesco.getText());
+					
+					control.update(Integer.parseInt(id.getText()), responsavel);
+				}
+				
+				btnSalvar.setEnabled(false);
+				btnCancelar.setEnabled(false);
+				btnProcurar.setEnabled(true);
+				btnDeletar.setEnabled(true);
+				btnEditar.setEnabled(true);
+				
+				nome.setEditable(false);
+				cpf.setEditable(false);
+				rg.setEditable(false);
+				telefone.setEditable(false);
+				dataNasc.setEditable(false);
+				endereco.setEditable(false);
+				resp1.setEditable(false);
+				resp2.setEditable(false);
+				parentesco.setEditable(false);
+			}
+		});
+		btnSalvar.setEnabled(false);
+		btnSalvar.setBounds(310, 140, 89, 20);
+		contentPane.add(btnSalvar);
+		
+		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (rdbtnAluno.isSelected()) {			
-					int vID = Integer.parseInt(id.getText());	
-					AlunoController control = new AlunoController();	
-					Aluno aluno = control.find(vID);
-
 					nome.setText(aluno.getNome());
 					cpf.setText(aluno.getCpf());
 					rg.setText(String.valueOf(aluno.getRg()));
 					telefone.setText(aluno.getTelefone());
-					dataNasc.setText(aluno.getDatanasc().toString());
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					dataNasc.setText(aluno.getDatanasc().format(formatter));
 					endereco.setText(aluno.getEndereco());
 //					resp1.setText(aluno.getResponsavel1());
 //					resp2.setText(aluno.getResponsavel2());
 					
-				} else if (rdbtnResponsavel.isSelected()) {
-//					System.out.println("Responsavel");
-					
-					int vID = Integer.parseInt(id.getText());
-					
-					ResponsavelController control = new ResponsavelController();
-					
-					Responsavel responsavel = control.find(vID);
-					
+				} else if (rdbtnResponsavel.isSelected()) {							
 					nome.setText(responsavel.getNome());
 					cpf.setText(responsavel.getCpf());
 					rg.setText(String.valueOf(responsavel.getRg()));
 					telefone.setText(responsavel.getTelefone());
-					dataNasc.setText(responsavel.getDatanasc().toString());
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					dataNasc.setText(responsavel.getDatanasc().format(formatter));
 					endereco.setText(responsavel.getEndereco());
 					parentesco.setText(responsavel.getParentesco());
 				}
+				btnSalvar.setEnabled(false);
+				btnCancelar.setEnabled(false);
+				btnProcurar.setEnabled(true);
+				btnDeletar.setEnabled(true);
+				btnEditar.setEnabled(true);
 				
-
-			}
+				nome.setEditable(false);
+				cpf.setEditable(false);
+				rg.setEditable(false);
+				telefone.setEditable(false);
+				dataNasc.setEditable(false);
+				endereco.setEditable(false);
+				resp1.setEditable(false);
+				resp2.setEditable(false);
+				parentesco.setEditable(false);
 			
-//			
+			}
 		});
-		btnNewButton.setBounds(300, 20, 115, 40);
-		contentPane.add(btnNewButton);
+		btnCancelar.setEnabled(false);
+		btnCancelar.setBounds(310, 165, 89, 20);
+		contentPane.add(btnCancelar);
 		
-		JButton btnRealizar = new JButton("Editar");
-		btnRealizar.setBounds(300, 95, 115, 40);
-		contentPane.add(btnRealizar);
 		
-		JButton btnNewButton_1 = new JButton("Salvar");
-		btnNewButton_1.setEnabled(false);
-		btnNewButton_1.setBounds(310, 140, 89, 20);
-		contentPane.add(btnNewButton_1);
+		btnEditar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				btnSalvar.setEnabled(true);
+				btnCancelar.setEnabled(true);
+				
+				btnProcurar.setEnabled(false);
+				btnDeletar.setEnabled(false);
+				btnEditar.setEnabled(false);
+				
+				nome.setEditable(true);
+				cpf.setEditable(true);
+				rg.setEditable(true);
+				telefone.setEditable(true);
+				dataNasc.setEditable(true);
+				endereco.setEditable(true);
+				if (rdbtnAluno.isSelected()) {
+					resp1.setEditable(true);
+					resp2.setEditable(true);
+				} else {
+					parentesco.setEditable(true);
+				}
+			}
+		});
+		btnEditar.setEnabled(false);
+		btnEditar.setBounds(300, 95, 115, 40);
+		contentPane.add(btnEditar);
+				
 		
-		JButton btnNewButton_2 = new JButton("Cancelar");
-		btnNewButton_2.setEnabled(false);
-		btnNewButton_2.setBounds(310, 165, 89, 20);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Deletar");
-		btnNewButton_3.addMouseListener(new MouseAdapter() {
+		btnDeletar.setEnabled(false);
+		btnDeletar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Object[] options = {"Sim", "Não"};
@@ -257,14 +341,64 @@ public class PesquisaPessoa extends JFrame {
 					    null,     //do not use a custom Icon
 					    options,  //the titles of buttons
 					    options[0]); //default button title
-					System.out.println(n);
-//				if () {
 					
-//				}
+				if (n == 0) {
+					if (rdbtnAluno.isSelected()) {
+						AlunoController control = new AlunoController();
+						control.delete(Integer.parseInt(id.getText()));
+					} else if (rdbtnResponsavel.isSelected()) {
+						ResponsavelController control = new ResponsavelController();
+						control.delete(Integer.parseInt(id.getText()));
+					}
+				}
 			}
 		});
-		btnNewButton_3.setBounds(300, 200, 115, 40);
-		contentPane.add(btnNewButton_3);
+		btnDeletar.setBounds(300, 200, 115, 40);
+		contentPane.add(btnDeletar);
+		
+		
+		btnProcurar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnProcurar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (rdbtnAluno.isSelected()) {			
+					int vID = Integer.parseInt(id.getText());	
+					AlunoController control = new AlunoController();	
+					aluno = control.find(vID);
+
+					nome.setText(aluno.getNome());
+					cpf.setText(aluno.getCpf());
+					rg.setText(String.valueOf(aluno.getRg()));
+					telefone.setText(aluno.getTelefone());
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					dataNasc.setText(aluno.getDatanasc().format(formatter));
+					endereco.setText(aluno.getEndereco());
+//					resp1.setText(aluno.getResponsavel1());
+//					resp2.setText(aluno.getResponsavel2());
+					
+				} else if (rdbtnResponsavel.isSelected()) {				
+					int vID = Integer.parseInt(id.getText());
+					ResponsavelController control = new ResponsavelController();
+					responsavel = control.find(vID);
+					
+					nome.setText(responsavel.getNome());
+					cpf.setText(responsavel.getCpf());
+					rg.setText(String.valueOf(responsavel.getRg()));
+					telefone.setText(responsavel.getTelefone());
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					dataNasc.setText(responsavel.getDatanasc().format(formatter));
+					endereco.setText(responsavel.getEndereco());
+					parentesco.setText(responsavel.getParentesco());
+				}
+				btnDeletar.setEnabled(true);
+				btnEditar.setEnabled(true);
+			}
+		});
+		btnProcurar.setBounds(300, 20, 115, 40);
+		contentPane.add(btnProcurar);
 		
 	}
 	
