@@ -11,9 +11,10 @@ public class ResponsavelController {
 		rep.persist(responsavel);
 	}
 
-	public void find(int id) {
+	public Responsavel find(int id) {
 		ResponsavelRepository rep = new ResponsavelRepository();
-		rep.find(id);
+		Responsavel resp = rep.find(id);
+		return resp;
 	}
 	
 	public void update(int id) {

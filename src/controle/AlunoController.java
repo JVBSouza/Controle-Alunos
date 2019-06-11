@@ -13,9 +13,10 @@ public class AlunoController {
 		rep.persist(aluno);
 	}
 
-	public void find(int matricula) {
+	public Aluno find(int matricula) {
 		AlunoRepository rep = new AlunoRepository();
-		rep.find(matricula);
+		Aluno aluno = rep.find(matricula);
+		return aluno;
 	}
 	
 	public void update(int id) {

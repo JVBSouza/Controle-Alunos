@@ -6,8 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.AlunoController;
+import controle.ResponsavelController;
+import modelo.Aluno;
+import modelo.Pessoa;
+import modelo.Responsavel;
+
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -18,16 +26,18 @@ import javax.swing.ButtonGroup;
 public class PesquisaPessoa extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField id;
 	private JTextField nome;
 	private JTextField cpf;
 	private JTextField rg;
 	private JTextField telefone;
+	private JTextField dataNasc;
 	private JTextField endereco;
-	private JTextField textField_3;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField resp1;
+	private JTextField resp2;
 	private final ButtonGroup pessoa = new ButtonGroup();
+	private JTextField parentesco;
+	private final ButtonGroup action = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -72,10 +82,10 @@ public class PesquisaPessoa extends JFrame {
 		lblMatrculaidentificado.setBounds(130, 20, 150, 20);
 		contentPane.add(lblMatrculaidentificado);
 		
-		textField = new JTextField();
-		textField.setBounds(130, 40, 150, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		id = new JTextField();
+		id.setBounds(130, 40, 150, 20);
+		contentPane.add(id);
+		id.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Nome:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -118,54 +128,144 @@ public class PesquisaPessoa extends JFrame {
 		contentPane.add(lblReponsvel);
 		
 		nome = new JTextField();
-		nome.setBounds(140, 75, 110, 20);
+		nome.setEditable(false);
+		nome.setBounds(140, 75, 140, 20);
 		contentPane.add(nome);
 		nome.setColumns(10);
 		
 		cpf = new JTextField();
-		cpf.setBounds(140, 95, 110, 20);
+		cpf.setEditable(false);
+		cpf.setBounds(140, 95, 140, 20);
 		contentPane.add(cpf);
 		cpf.setColumns(10);
 		
 		rg = new JTextField();
-		rg.setBounds(140, 115, 110, 20);
+		rg.setEditable(false);
+		rg.setBounds(140, 115, 140, 20);
 		contentPane.add(rg);
 		rg.setColumns(10);
 		
 		telefone = new JTextField();
-		telefone.setBounds(140, 135, 110, 20);
+		telefone.setEditable(false);
+		telefone.setBounds(140, 135, 140, 20);
 		contentPane.add(telefone);
 		telefone.setColumns(10);
 		
+		dataNasc = new JTextField();
+		dataNasc.setEditable(false);
+		dataNasc.setBounds(140, 155, 140, 20);
+		contentPane.add(dataNasc);
+		dataNasc.setColumns(10);
+		
 		endereco = new JTextField();
-		endereco.setBounds(140, 155, 110, 20);
+		endereco.setEditable(false);
+		endereco.setBounds(140, 175, 140, 20);
 		contentPane.add(endereco);
 		endereco.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(140, 175, 110, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		resp1 = new JTextField();
+		resp1.setEditable(false);
+		resp1.setBounds(140, 195, 140, 20);
+		contentPane.add(resp1);
+		resp1.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(140, 195, 110, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		resp2 = new JTextField();
+		resp2.setEditable(false);
+		resp2.setBounds(140, 215, 140, 20);
+		contentPane.add(resp2);
+		resp2.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(140, 215, 110, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		JLabel lblNewLabel_6 = new JLabel("Parentesco:");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_6.setBounds(30, 235, 100, 20);
+		contentPane.add(lblNewLabel_6);
+		
+		parentesco = new JTextField();
+		parentesco.setEditable(false);
+		parentesco.setBounds(140, 235, 140, 20);
+		contentPane.add(parentesco);
+		parentesco.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Procurar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println(pessoa.getButtonCount());
+				if (rdbtnAluno.isSelected()) {			
+					int vID = Integer.parseInt(id.getText());	
+					AlunoController control = new AlunoController();	
+					Aluno aluno = control.find(vID);
+
+					nome.setText(aluno.getNome());
+					cpf.setText(aluno.getCpf());
+					rg.setText(String.valueOf(aluno.getRg()));
+					telefone.setText(aluno.getTelefone());
+					dataNasc.setText(aluno.getDatanasc().toString());
+					endereco.setText(aluno.getEndereco());
+//					resp1.setText(aluno.getResponsavel1());
+//					resp2.setText(aluno.getResponsavel2());
+					
+				} else if (rdbtnResponsavel.isSelected()) {
+//					System.out.println("Responsavel");
+					
+					int vID = Integer.parseInt(id.getText());
+					
+					ResponsavelController control = new ResponsavelController();
+					
+					Responsavel responsavel = control.find(vID);
+					
+					nome.setText(responsavel.getNome());
+					cpf.setText(responsavel.getCpf());
+					rg.setText(String.valueOf(responsavel.getRg()));
+					telefone.setText(responsavel.getTelefone());
+					dataNasc.setText(responsavel.getDatanasc().toString());
+					endereco.setText(responsavel.getEndereco());
+					parentesco.setText(responsavel.getParentesco());
+				}
+				
+
 			}
+			
+//			
 		});
-		btnNewButton.setBounds(300, 20, 114, 40);
+		btnNewButton.setBounds(300, 20, 115, 40);
 		contentPane.add(btnNewButton);
 		
+		JButton btnRealizar = new JButton("Editar");
+		btnRealizar.setBounds(300, 95, 115, 40);
+		contentPane.add(btnRealizar);
+		
+		JButton btnNewButton_1 = new JButton("Salvar");
+		btnNewButton_1.setEnabled(false);
+		btnNewButton_1.setBounds(310, 140, 89, 20);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.setEnabled(false);
+		btnNewButton_2.setBounds(310, 165, 89, 20);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Deletar");
+		btnNewButton_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Object[] options = {"Sim", "Não"};
+				int n = JOptionPane.showOptionDialog(arg0.getComponent(),
+					    "Prosseguir com o delete?",
+					    "Confirmação",
+					    JOptionPane.YES_NO_OPTION,
+					    JOptionPane.QUESTION_MESSAGE,
+					    null,     //do not use a custom Icon
+					    options,  //the titles of buttons
+					    options[0]); //default button title
+					System.out.println(n);
+//				if () {
+					
+//				}
+			}
+		});
+		btnNewButton_3.setBounds(300, 200, 115, 40);
+		contentPane.add(btnNewButton_3);
+		
 	}
+	
 }

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Pessoa {
 
 	private String nome;
-	private String cpf; //CPF com 11 números - mudar pra outro tipo
+	private String cpf; //CPF com 11 nï¿½meros - mudar pra outro tipo
 	private int rg;
 	private String telefone;
 	private LocalDate datanasc;
@@ -29,7 +29,6 @@ public class Pessoa {
 	public String getEndereco() {
 		return endereco;
 	}
-	
 	
 	public void setNome(String nome) {
 		this.nome = nome;

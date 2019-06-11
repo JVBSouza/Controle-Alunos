@@ -19,7 +19,7 @@ public class ResponsavelRepository {
 		
 //		Statement stmt = null;
 //		String sql = "INSERT INTO responsaveis " +
-//					 "(Nome, RG, CPF, Telefone, DataNasc, Endereço, Parentesco) " +
+//					 "(Nome, RG, CPF, Telefone, DataNasc, Endereï¿½o, Parentesco) " +
 //					 "Values ("+nome+","+rg +", "+cpf+", "+telefone+", "+datanasc+", "+endereco+", "+parentesco+ ") ";
 		try (Connection conn = ConexaoBD.getConexao();) {
 //			stmt = conn.createStatement();
@@ -43,7 +43,7 @@ public class ResponsavelRepository {
 		}
 	}
 
-	public void find(int id) {
+	public Responsavel find(int id) {
 		Statement stmt = null;
 		String sql = "Select * from responsaveis where codresp ="+id;
 		ResultSet rs = null;
@@ -52,24 +52,28 @@ public class ResponsavelRepository {
 		String nome;
 		int RG;
 		String CPF;
-		String Telefone;
+		String telefone;
 		LocalDate datanasc;
-		String Endereco;
-		String Parentesco;
-		
+		String endereco;
+		String parentesco;
+		Responsavel responsavel = null;
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
+			if (rs.next()) {
+				
 				CodResp = rs.getInt("codresp");
 				nome = rs.getString("nome");
 				RG = rs.getInt("rg");
 				CPF = rs.getString("cpf");
-				Telefone = rs.getString("telefone");
+				telefone = rs.getString("telefone");
 				datanasc = rs.getDate("datanasc").toLocalDate();
-				Endereco = rs.getString("endereco");
-				Parentesco = rs.getString("parentesco");
-				System.out.println(CodResp +" "+ nome +" "+ RG +" "+ CPF +" "+ Telefone +" "+ datanasc +" "+ Endereco +" "+ Parentesco);
+				endereco = rs.getString("endereco");
+				parentesco = rs.getString("parentesco");
+				
+				responsavel = new Responsavel(nome, CPF, RG, telefone, datanasc, endereco, parentesco);
+				
+//				System.out.println(CodResp +" "+ nome +" "+ RG +" "+ CPF +" "+ Telefone +" "+ datanasc +" "+ Endereco +" "+ Parentesco);
 				
 			}
 		} catch (SQLException ex){
@@ -79,7 +83,9 @@ public class ResponsavelRepository {
 		} finally {
 			
 		}
-			
+		
+		return responsavel;
+		
 	}
 	
 	public void update(int id) {
@@ -101,7 +107,7 @@ public class ResponsavelRepository {
 			ps.setString(3, "12345678901");
 			ps.setString(4, novoTel);
 			ps.setDate(5, java.sql.Date.valueOf(LocalDate.of(1994, 03, 20)));
-			ps.setString(6, "Novo endereço");
+			ps.setString(6, "Novo endereï¿½o");
 			ps.setString(7, "PAI");
 			ps.setInt(8, id);
 			ps.executeUpdate();
