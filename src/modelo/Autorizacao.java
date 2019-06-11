@@ -10,8 +10,8 @@ public class Autorizacao {
 	private int codResponsavel;
 	private int codUsuario;
 	private LocalDateTime data;
-	//private String tipo; // Entrada ou saída sair passado para o registro;
-	private String desc; // Descrição
+	//private String tipo; // Entrada ou saÃ­da sair passado para o registro;
+	private String desc; // DescriÃ§Ã£o
 	private boolean ativo;
 	private String descCancel;
 	
