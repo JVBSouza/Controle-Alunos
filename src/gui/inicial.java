@@ -9,6 +9,9 @@ import controle.ResponsavelController;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class inicial {
 
@@ -16,6 +19,8 @@ public class inicial {
 	private JFrame cadastroAluno;
 	private JFrame cadastroResponsavel;
 	private JFrame cadastroAutorizacao;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -38,12 +43,12 @@ public class inicial {
 	 */
 	public inicial() {
 		initialize();
-		this.cadastroAluno = new CadastroAluno();
+		this.cadastroAluno = new CadastroAluno(); //<<
 		
 		ResponsavelController respcontrol = new ResponsavelController();
 		
 		this.cadastroResponsavel = new CadastroResponsavel();
-		this.cadastroAutorizacao = new CadastroAutorizacao();
+		this.cadastroAutorizacao = new CadastroAutorizacao();  //<<
 		
 	}
 
@@ -65,7 +70,7 @@ public class inicial {
 				cadastroAluno.setVisible(true);
 			}
 		});
-		btnCadastroDeAluno.setBounds(10, 11, 180, 40);
+		btnCadastroDeAluno.setBounds(10, 110, 180, 40);
 		frmTelaInicial.getContentPane().add(btnCadastroDeAluno);
 
 		JButton btnCadastroDeResponsavel = new JButton("Cadastrar novo responsável");
@@ -76,7 +81,7 @@ public class inicial {
 				
 			}
 		});
-		btnCadastroDeResponsavel.setBounds(10, 60, 180, 40);
+		btnCadastroDeResponsavel.setBounds(10, 159, 180, 40);
 		frmTelaInicial.getContentPane().add(btnCadastroDeResponsavel);
 		
 		JButton btnCadastroAutorizacao = new JButton("Cadastrar uma autorização");
@@ -86,7 +91,35 @@ public class inicial {
 				cadastroAutorizacao.setVisible(true);
 			}
 		});
-		btnCadastroAutorizacao.setBounds(200, 11, 180, 40);
+		btnCadastroAutorizacao.setBounds(10, 210, 180, 40);
 		frmTelaInicial.getContentPane().add(btnCadastroAutorizacao);
+		
+		JButton btnPesquisar = new JButton("Pesquisar um aluno ou responsável");
+		btnPesquisar.setBounds(200, 110, 304, 89);
+		frmTelaInicial.getContentPane().add(btnPesquisar);
+		
+		JButton btnRegistrar = new JButton("Registro uma entrada ou saída");
+		btnRegistrar.setBounds(200, 210, 304, 40);
+		frmTelaInicial.getContentPane().add(btnRegistrar);
+		
+		JLabel lblUsurio = new JLabel("Usuário");
+		lblUsurio.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsurio.setBounds(136, 30, 54, 20);
+		frmTelaInicial.getContentPane().add(lblUsurio);
+		
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSenha.setBounds(144, 61, 46, 20);
+		frmTelaInicial.getContentPane().add(lblSenha);
+		
+		textField = new JTextField();
+		textField.setBounds(200, 31, 86, 20);
+		frmTelaInicial.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(200, 61, 86, 20);
+		frmTelaInicial.getContentPane().add(textField_1);
 	}
 }
