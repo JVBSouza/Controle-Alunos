@@ -19,9 +19,9 @@ public class AlunoController {
 		return aluno;
 	}
 	
-	public void update(int id) {
+	public void update(int id, Aluno aluno) {
 		AlunoRepository rep = new AlunoRepository();
-		rep.update(id);
+		rep.update(id, aluno);
 	}
 	
 	public void delete(int id) {

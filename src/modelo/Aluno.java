@@ -42,6 +42,14 @@ public class Aluno extends Pessoa {
 	public String toString() {
 		return "Aluno " + this.getNome()+ ", CPF: "+ this.getCpf();
 	}
+
+	public void setResponsavel1(Responsavel responsavel1) {
+		this.responsavel1 = responsavel1;
+	}
+
+	public void setResponsavel2(Responsavel responsavel2) {
+		this.responsavel2 = responsavel2;
+	}
 	
 	
 }
