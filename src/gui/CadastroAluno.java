@@ -53,7 +53,7 @@ public class CadastroAluno extends JFrame {
 	public CadastroAluno() {
 		setTitle("Cadastro de novo aluno");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 295);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,7 +65,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblNome);
 		
 		nome = new JTextField();
-		nome.setBounds(145, 10, 182, 17);
+		nome.setBounds(145, 10, 200, 17);
 		contentPane.add(nome);
 		nome.setColumns(10);
 		
@@ -75,7 +75,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		cpf = new JFormattedTextField();
-		cpf.setBounds(145, 35, 182, 17);
+		cpf.setBounds(145, 35, 200, 17);
 		contentPane.add(cpf);
 		cpf.setColumns(10);
 		
@@ -94,7 +94,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblRg);
 		
 		JFormattedTextField rg = new JFormattedTextField();
-		rg.setBounds(145, 60, 182, 17);
+		rg.setBounds(145, 60, 200, 17);
 		contentPane.add(rg);
 		
 //		MaskFormatter rgMask;
@@ -112,7 +112,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		telefone = new JFormattedTextField();
-		telefone.setBounds(145, 85, 182, 17);
+		telefone.setBounds(145, 85, 200, 17);
 		contentPane.add(telefone);
 		telefone.setColumns(10);
 		
@@ -131,7 +131,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblEndereo);
 		
 		endereco = new JTextField();
-		endereco.setBounds(145, 135, 182, 17);
+		endereco.setBounds(145, 135, 200, 17);
 		contentPane.add(endereco);
 		endereco.setColumns(10);
 		
@@ -141,7 +141,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblResponsavel);
 		
 		resp1 = new JTextField();
-		resp1.setBounds(145, 160, 182, 17);
+		resp1.setBounds(145, 160, 200, 17);
 		contentPane.add(resp1);
 		resp1.setColumns(10);
 		
@@ -151,7 +151,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		resp2 = new JTextField();
-		resp2.setBounds(145, 185, 182, 17);
+		resp2.setBounds(145, 185, 200, 17);
 		contentPane.add(resp2);
 		resp2.setColumns(10);
 		
@@ -161,7 +161,7 @@ public class CadastroAluno extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		JFormattedTextField dataNasc = new JFormattedTextField();
-		dataNasc.setBounds(145, 110, 182, 17);
+		dataNasc.setBounds(145, 110, 200, 17);
 		contentPane.add(dataNasc);
 		
 		MaskFormatter dataMask;
@@ -193,7 +193,7 @@ public class CadastroAluno extends JFrame {
 				
 			}
 		});
-		btnCadastrarAluno.setBounds(121, 220, 188, 23);
+		btnCadastrarAluno.setBounds(145, 215, 200, 34);
 		contentPane.add(btnCadastrarAluno);
 		
 	}

@@ -57,7 +57,7 @@ public class CadastroResponsavel extends JFrame {
 	public CadastroResponsavel() {
 		setTitle("Cadastro de novo responsável");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //fecha somente a janela solicitada (oposto de EXIT_ON_CLOSE)
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,7 +70,7 @@ public class CadastroResponsavel extends JFrame {
 		
 		nome = new JTextField();
 		nome.setToolTipText("Nome do responsável");
-		nome.setBounds(145, 10, 165, 17);
+		nome.setBounds(145, 10, 180, 17);
 		contentPane.add(nome);
 		nome.setColumns(10);
 		
@@ -102,11 +102,11 @@ public class CadastroResponsavel extends JFrame {
 		JComboBox parentesco = new JComboBox();
 		parentesco.setModel(new DefaultComboBoxModel(new String[] {"Pai", "Mãe", "Avó", "Avô"}));
 		parentesco.setMaximumRowCount(4);
-		parentesco.setBounds(145, 160, 165, 17);
+		parentesco.setBounds(145, 160, 180, 17);
 		contentPane.add(parentesco);
 		
 		cpf = new JFormattedTextField();
-		cpf.setBounds(145, 35, 165, 17);
+		cpf.setBounds(145, 35, 180, 17);
 		contentPane.add(cpf);
 		cpf.setColumns(10);
 		
@@ -120,12 +120,12 @@ public class CadastroResponsavel extends JFrame {
 		}
 		
 		rg = new JTextField();
-		rg.setBounds(145, 60, 165, 17);
+		rg.setBounds(145, 60, 180, 17);
 		contentPane.add(rg);
 		rg.setColumns(10);
 		
 		telefone = new JFormattedTextField();
-		telefone.setBounds(145, 85, 165, 17);
+		telefone.setBounds(145, 85, 180, 17);
 		contentPane.add(telefone);
 		telefone.setColumns(10);
 		
@@ -139,7 +139,7 @@ public class CadastroResponsavel extends JFrame {
 		}
 		
 		endereco = new JTextField();
-		endereco.setBounds(145, 135, 165, 17);
+		endereco.setBounds(145, 135, 180, 17);
 		contentPane.add(endereco);
 		endereco.setColumns(10);
 		
@@ -149,7 +149,7 @@ public class CadastroResponsavel extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JFormattedTextField dataNasc = new JFormattedTextField();
-		dataNasc.setBounds(145, 110, 165, 17);
+		dataNasc.setBounds(145, 110, 180, 17);
 		contentPane.add(dataNasc);
 		
 		MaskFormatter dataMask;
@@ -182,7 +182,7 @@ public class CadastroResponsavel extends JFrame {
 				control.persist(responsavel);
 			}
 		});
-		btnCadastrar.setBounds(145, 195, 165, 53);
+		btnCadastrar.setBounds(145, 190, 180, 34);
 		contentPane.add(btnCadastrar);
 		
 	}

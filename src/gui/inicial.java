@@ -15,6 +15,7 @@ public class inicial {
 	private JFrame frmTelaInicial;
 	private JFrame cadastroAluno;
 	private JFrame cadastroResponsavel;
+	private JFrame cadastroAutorizacao;
 
 	/**
 	 * Launch the application.
@@ -42,6 +43,8 @@ public class inicial {
 		ResponsavelController respcontrol = new ResponsavelController();
 		
 		this.cadastroResponsavel = new CadastroResponsavel();
+		this.cadastroAutorizacao = new CadastroAutorizacao();
+		
 	}
 
 	/**
@@ -50,11 +53,11 @@ public class inicial {
 	private void initialize() {
 		frmTelaInicial = new JFrame();
 		frmTelaInicial.setTitle("Tela inicial");
-		frmTelaInicial.setBounds(100, 100, 450, 300);
+		frmTelaInicial.setBounds(100, 100, 530, 300);
 		frmTelaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTelaInicial.getContentPane().setLayout(null);
 		
-		JButton btnCadastroDeAluno = new JButton("Cadastro de Aluno");
+		JButton btnCadastroDeAluno = new JButton("Cadastrar novo aluno");
 		btnCadastroDeAluno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -62,18 +65,28 @@ public class inicial {
 				cadastroAluno.setVisible(true);
 			}
 		});
-		btnCadastroDeAluno.setBounds(32, 34, 155, 23);
+		btnCadastroDeAluno.setBounds(10, 11, 180, 40);
 		frmTelaInicial.getContentPane().add(btnCadastroDeAluno);
-		
-		JButton btnCadastroDeResponsvel = new JButton("Cadastro de Responsável");
-		btnCadastroDeResponsvel.addMouseListener(new MouseAdapter() {
+
+		JButton btnCadastroDeResponsavel = new JButton("Cadastrar novo responsável");
+		btnCadastroDeResponsavel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cadastroResponsavel.setVisible(true);
 				
 			}
 		});
-		btnCadastroDeResponsvel.setBounds(32, 88, 155, 23);
-		frmTelaInicial.getContentPane().add(btnCadastroDeResponsvel);
+		btnCadastroDeResponsavel.setBounds(10, 60, 180, 40);
+		frmTelaInicial.getContentPane().add(btnCadastroDeResponsavel);
+		
+		JButton btnCadastroAutorizacao = new JButton("Cadastrar uma autorização");
+		btnCadastroAutorizacao.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cadastroAutorizacao.setVisible(true);
+			}
+		});
+		btnCadastroAutorizacao.setBounds(200, 11, 180, 40);
+		frmTelaInicial.getContentPane().add(btnCadastroAutorizacao);
 	}
 }
