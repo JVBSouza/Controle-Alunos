@@ -46,7 +46,7 @@ public class CadastroAutorizacao extends JFrame {
 	public CadastroAutorizacao() {
 		setTitle("Cadastro de Autorização");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,61 +54,61 @@ public class CadastroAutorizacao extends JFrame {
 		
 		JLabel lblN = new JLabel("Número da matrícula:");
 		lblN.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblN.setBounds(10, 35, 150, 17);
+		lblN.setBounds(10, 35, 124, 17);
 		contentPane.add(lblN);
 		
-		JLabel lblNewLabel = new JLabel("Nome do aluno autorizado:");
+		JLabel lblNewLabel = new JLabel("Nome do aluno");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(10, 60, 150, 17);
+		lblNewLabel.setBounds(10, 60, 124, 17);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNomeDoResponsvel = new JLabel("Nome do responsável:");
 		lblNomeDoResponsvel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNomeDoResponsvel.setBounds(10, 85, 150, 17);
+		lblNomeDoResponsvel.setBounds(10, 85, 124, 17);
 		contentPane.add(lblNomeDoResponsvel);
 		
 		JLabel lblDataAutorizacao = new JLabel("Data da autorização:");
 		lblDataAutorizacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDataAutorizacao.setBounds(10, 110, 150, 17);
+		lblDataAutorizacao.setBounds(10, 110, 124, 17);
 		contentPane.add(lblDataAutorizacao);
 		
 		JLabel lblUsurio = new JLabel("Usuário:");
 		lblUsurio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUsurio.setBounds(10, 10, 150, 17);
+		lblUsurio.setBounds(10, 10, 124, 17);
 		contentPane.add(lblUsurio);
 		
 		
 		usuario = new JTextField();
-		usuario.setBounds(170, 10, 165, 17);
+		usuario.setBounds(145, 10, 200, 17);
 		contentPane.add(usuario);
 		usuario.setColumns(10);
 		
 		matricula = new JTextField();
-		matricula.setBounds(170, 35, 165, 17);
+		matricula.setBounds(145, 35, 120, 17);
 		contentPane.add(matricula);
 		matricula.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(350, 34, 65, 19);
+		btnNewButton.setBounds(270, 34, 75, 19);
 		contentPane.add(btnNewButton);
 		
 		nomeAluno = new JTextField();
-		nomeAluno.setBounds(170, 60, 165, 17);
+		nomeAluno.setBounds(145, 60, 200, 17);
 		contentPane.add(nomeAluno);
 		nomeAluno.setColumns(10);
 		
 		nomeResponsavel = new JTextField();
-		nomeResponsavel.setBounds(170, 85, 165, 17);
+		nomeResponsavel.setBounds(144, 85, 200, 17);
 		contentPane.add(nomeResponsavel);
 		nomeResponsavel.setColumns(10);
 		
 		dataAutorizacao = new JFormattedTextField();
-		dataAutorizacao.setBounds(170, 110, 165, 17);
+		dataAutorizacao.setBounds(144, 110, 200, 17);
 		contentPane.add(dataAutorizacao);
 		dataAutorizacao.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("Cadastrar Autorização");
-		btnNewButton_1.setBounds(170, 150, 165, 52);
+		btnNewButton_1.setBounds(145, 138, 200, 34);
 		contentPane.add(btnNewButton_1);
 		
 		MaskFormatter dataMask;
