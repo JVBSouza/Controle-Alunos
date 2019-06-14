@@ -88,9 +88,9 @@ public class CadastroAutorizacao extends JFrame {
 		contentPane.add(matricula);
 		matricula.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(270, 34, 75, 19);
-		contentPane.add(btnNewButton);
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(270, 34, 75, 19);
+		contentPane.add(btnBuscar);
 		
 		nomeAluno = new JTextField();
 		nomeAluno.setBounds(145, 60, 200, 17);

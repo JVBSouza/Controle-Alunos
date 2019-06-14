@@ -98,7 +98,7 @@ public class inicial {
 		btnPesquisar.setBounds(200, 110, 304, 89);
 		frmTelaInicial.getContentPane().add(btnPesquisar);
 		
-		JButton btnRegistrar = new JButton("Registro uma entrada ou saída");
+		JButton btnRegistrar = new JButton("Registro entrada ou saída");
 		btnRegistrar.setBounds(200, 210, 304, 40);
 		frmTelaInicial.getContentPane().add(btnRegistrar);
 		
