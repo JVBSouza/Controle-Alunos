@@ -44,18 +44,18 @@ public class Main {
 	}
 
 	public static void executarResponsavel() {
-		// criar objeto Responsavel
-		Responsavel responsavel = new Responsavel("Diferente", "99988877766", 123456789, "988887777", LocalDate.of(2019, 02, 05),"Rua responsavel", "Pai"); 
-		ResponsavelController controle = new ResponsavelController();
-		controle.persist(responsavel);
+//		// criar objeto Responsavel
+//		Responsavel responsavel = new Responsavel("Diferente", "99988877766", 123456789, "988887777", LocalDate.of(2019, 02, 05),"Rua responsavel", "Pai"); 
+//		ResponsavelController controle = new ResponsavelController();
+//		controle.persist(responsavel);
 	}
 	
 	public static void executarAluno() {
-		// criar objeto Aluno
-		Aluno aluno = new Aluno("Vínicius", "00187645512", 56434567, "(48) 98752-3567",LocalDate.of(1997, 05, 20),"Rua dos bobos numero 0");
-		//Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
-		AlunoController controle = new AlunoController();
-		controle.persist(aluno);
+//		// criar objeto Aluno
+////		Aluno aluno = new Aluno("Vínicius", "00187645512", 56434567, "(48) 98752-3567",LocalDate.of(1997, 05, 20),"Rua dos bobos numero 0");
+//		//Aluno aluno = new Aluno("Maria", 123456789, 1234567, 999998888, 12,"Rua do aluno"); 
+//		AlunoController controle = new AlunoController();
+//		controle.persist(aluno);
 	}
 	
 	public static void executarRegistro() {

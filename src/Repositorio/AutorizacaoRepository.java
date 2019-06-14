@@ -10,18 +10,18 @@ public class AutorizacaoRepository {
 	
 	public void persist(Autorizacao autorizacao) {
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO autorizacoes (matricula, cod_responsavel, cod_usuario, data, descricao, ativo, desc_cancelado) VALUES " +
+		String sql = "INSERT INTO autorizacao (matricula, cod_resp, cod_user, data, descr, ativo, descr_cancel) VALUES " +
 					"(?, ?, ?, ?, ?, ?, ?)";
 		
 		try (Connection conn = ConexaoBD.getConexao();) {
-//			stmt = conn.createStatement();
-//			stmt.executeUpdate(sql);
+			ps = conn.prepareStatement(sql);
 			ps.setInt(1, autorizacao.getMatricula());
 			ps.setInt(2, autorizacao.getCodResponsavel());
 			ps.setInt(3, autorizacao.getCodUsuario());
 			ps.setTimestamp(4, java.sql.Timestamp.valueOf(autorizacao.getData()));
 			ps.setString(5, autorizacao.getDesc());
 			ps.setBoolean(6, autorizacao.isAtivo());
+			ps.setString(7, null);
 			
 			ps.executeUpdate();
 			
