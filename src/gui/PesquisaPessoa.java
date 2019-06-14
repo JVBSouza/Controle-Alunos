@@ -30,6 +30,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class PesquisaPessoa extends JFrame {
 
@@ -71,7 +72,7 @@ public class PesquisaPessoa extends JFrame {
 	public PesquisaPessoa() {
 		setTitle("Pesquisa de pessoa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 530, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,119 +90,122 @@ public class PesquisaPessoa extends JFrame {
 		contentPane.add(rdbtnResponsavel);
 		
 		JLabel lblMatrculaidentificado = new JLabel("Matrícula/Identificador:");
-		lblMatrculaidentificado.setBounds(130, 20, 150, 20);
+		lblMatrculaidentificado.setBounds(130, 10, 150, 20);
 		contentPane.add(lblMatrculaidentificado);
 		
 		id = new JTextField();
-		id.setBounds(130, 40, 150, 20);
+		id.setBounds(130, 30, 200, 17);
 		contentPane.add(id);
 		id.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Nome:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(30, 75, 100, 20);
+		lblNewLabel.setBounds(20, 72, 100, 20);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCpf.setBounds(30, 95, 100, 20);
+		lblCpf.setBounds(20, 92, 100, 20);
 		contentPane.add(lblCpf);
 		
 		JLabel lblNewLabel_1 = new JLabel("RG:");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(30, 115, 100, 20);
+		lblNewLabel_1.setBounds(20, 112, 100, 20);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Telefone:");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2.setBounds(30, 135, 100, 20);
+		lblNewLabel_2.setBounds(20, 132, 100, 20);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Data de Nascimento:");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_3.setBounds(10, 155, 120, 20);
+		lblNewLabel_3.setBounds(0, 152, 120, 20);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Endereço:");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setBounds(30, 175, 100, 20);
+		lblNewLabel_4.setBounds(20, 172, 100, 20);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Responsável 1:");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5.setBounds(30, 195, 100, 20);
+		lblNewLabel_5.setBounds(20, 192, 100, 20);
 		contentPane.add(lblNewLabel_5);
 		
 		JLabel lblReponsvel = new JLabel("Responsável 2:");
 		lblReponsvel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblReponsvel.setBounds(30, 215, 100, 20);
+		lblReponsvel.setBounds(20, 212, 100, 20);
 		contentPane.add(lblReponsvel);
 		
 		nome = new JTextField();
 		nome.setEditable(false);
-		nome.setBounds(140, 75, 140, 20);
+		nome.setBounds(130, 72, 200, 17);
 		contentPane.add(nome);
 		nome.setColumns(10);
 		
 		cpf = new JTextField();
 		cpf.setEditable(false);
-		cpf.setBounds(140, 95, 140, 20);
+		cpf.setBounds(130, 92, 200, 17);
 		contentPane.add(cpf);
 		cpf.setColumns(10);
 		
 		rg = new JTextField();
 		rg.setEditable(false);
-		rg.setBounds(140, 115, 140, 20);
+		rg.setBounds(130, 112, 200, 17);
 		contentPane.add(rg);
 		rg.setColumns(10);
 		
 		telefone = new JFormattedTextField();
 		telefone.setEditable(false);
-		telefone.setBounds(140, 135, 140, 20);
+		telefone.setBounds(130, 132, 200, 17);
 		contentPane.add(telefone);
 		telefone.setColumns(10);
 				
 		dataNasc = new JTextField();
 		dataNasc.setEditable(false);
-		dataNasc.setBounds(140, 155, 140, 20);
+		dataNasc.setBounds(130, 152, 200, 17);
 		contentPane.add(dataNasc);
 		dataNasc.setColumns(10);
 		
 		endereco = new JTextField();
 		endereco.setEditable(false);
-		endereco.setBounds(140, 175, 140, 20);
+		endereco.setBounds(130, 172, 200, 17);
 		contentPane.add(endereco);
 		endereco.setColumns(10);
 		
 		resp1 = new JTextField();
 		resp1.setEditable(false);
-		resp1.setBounds(140, 195, 140, 20);
+		resp1.setBounds(130, 192, 200, 17);
 		contentPane.add(resp1);
 		resp1.setColumns(10);
 		
 		resp2 = new JTextField();
 		resp2.setEditable(false);
-		resp2.setBounds(140, 215, 140, 20);
+		resp2.setBounds(130, 212, 200, 17);
 		contentPane.add(resp2);
 		resp2.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Parentesco:");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_6.setBounds(30, 235, 100, 20);
+		lblNewLabel_6.setBounds(20, 232, 100, 20);
 		contentPane.add(lblNewLabel_6);
 		
 		parentesco = new JTextField();
 		parentesco.setEditable(false);
-		parentesco.setBounds(140, 235, 140, 20);
+		parentesco.setBounds(130, 232, 200, 17);
 		contentPane.add(parentesco);
 		parentesco.setColumns(10);
 		
 		
 		JButton btnProcurar = new JButton("Procurar");
-		JButton btnDeletar = new JButton("Deletar");
-		JButton btnCancelar = new JButton("Cancelar");
-		JButton btnEditar = new JButton("Editar");
-		JButton btnSalvar = new JButton("Salvar");
+		JButton btnDeletar = new JButton("Deletar pessoa");
+		btnDeletar.setForeground(new Color(255, 255, 255));
+		btnDeletar.setBackground(new Color(255, 0, 0));
+		JButton btnCancelar = new JButton("Cancelar edição");
+		JButton btnEditar = new JButton("Editar pessoa");
+		JButton btnSalvar = new JButton("Salvar edição");
+		btnSalvar.setBackground(new Color(50, 205, 50));
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -249,7 +253,7 @@ public class PesquisaPessoa extends JFrame {
 			}
 		});
 		btnSalvar.setEnabled(false);
-		btnSalvar.setBounds(310, 140, 89, 20);
+		btnSalvar.setBounds(340, 152, 150, 25);
 		contentPane.add(btnSalvar);
 		
 		btnCancelar.addMouseListener(new MouseAdapter() {
@@ -295,7 +299,7 @@ public class PesquisaPessoa extends JFrame {
 			}
 		});
 		btnCancelar.setEnabled(false);
-		btnCancelar.setBounds(310, 165, 89, 20);
+		btnCancelar.setBounds(340, 190, 150, 25);
 		contentPane.add(btnCancelar);
 		
 		
@@ -324,7 +328,7 @@ public class PesquisaPessoa extends JFrame {
 			}
 		});
 		btnEditar.setEnabled(false);
-		btnEditar.setBounds(300, 95, 115, 40);
+		btnEditar.setBounds(340, 71, 150, 61);
 		contentPane.add(btnEditar);
 				
 		
@@ -353,7 +357,7 @@ public class PesquisaPessoa extends JFrame {
 				}
 			}
 		});
-		btnDeletar.setBounds(300, 200, 115, 40);
+		btnDeletar.setBounds(340, 230, 150, 20);
 		contentPane.add(btnDeletar);
 		
 		
@@ -397,7 +401,7 @@ public class PesquisaPessoa extends JFrame {
 				btnEditar.setEnabled(true);
 			}
 		});
-		btnProcurar.setBounds(300, 20, 115, 40);
+		btnProcurar.setBounds(340, 29, 150, 19);
 		contentPane.add(btnProcurar);
 		
 	}
