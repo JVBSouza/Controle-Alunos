@@ -7,7 +7,7 @@ public class Responsavel extends Pessoa {
 	private int codResponsavel;
 	private String parentesco;
 	
-	public Responsavel(String nome, String cpf, int rg, String telefone, LocalDate datanasc, String endereco, String parentesco) {
+	public Responsavel(String nome, String cpf, String rg, String telefone, LocalDate datanasc, String endereco, String parentesco) {
 		this.setNome(nome);
 		this.setRg(rg);
 		this.setCpf(cpf); //cpf tem mais que 11 numeros ver isso
@@ -18,6 +18,10 @@ public class Responsavel extends Pessoa {
 		this.parentesco = parentesco;
 		//Parentesco.valueOf("PAI") transforma string em enum
 		//this.codResponsavel = 123;
+	}
+
+	public void setCodResponsavel(int codResponsavel) {
+		this.codResponsavel = codResponsavel;
 	}
 
 	public int getCodResponsavel() {

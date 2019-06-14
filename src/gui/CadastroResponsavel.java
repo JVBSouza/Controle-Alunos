@@ -167,15 +167,13 @@ public class CadastroResponsavel extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				String vNome = nome.getText();
 				String vCpf = cpf.getText();
-				int vRg = Integer.parseInt(rg.getText());
+				String vRg = rg.getText();
 				String vTelefone = telefone.getText();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate vDataNasc = LocalDate.parse(dataNasc.getText(), formatter);
 				String vendereco = endereco.getText();
 				String vparentesco = (String) parentesco.getSelectedItem();
-				
-				System.out.println(vparentesco);
-				
+												
 				Responsavel responsavel = new Responsavel(vNome, vCpf, vRg, vTelefone, vDataNasc, vendereco, vparentesco);
 				ResponsavelController control = new ResponsavelController();
 //				

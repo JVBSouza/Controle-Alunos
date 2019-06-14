@@ -19,6 +19,7 @@ public class inicial {
 	private JFrame cadastroAluno;
 	private JFrame cadastroResponsavel;
 	private JFrame cadastroAutorizacao;
+	private JFrame pesquisaPessoa;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -44,12 +45,9 @@ public class inicial {
 	public inicial() {
 		initialize();
 		this.cadastroAluno = new CadastroAluno(); //<<
-		
-		ResponsavelController respcontrol = new ResponsavelController();
-		
 		this.cadastroResponsavel = new CadastroResponsavel();
 		this.cadastroAutorizacao = new CadastroAutorizacao();  //<<
-		
+		this.pesquisaPessoa = new PesquisaPessoa();
 	}
 
 	/**
@@ -95,6 +93,12 @@ public class inicial {
 		frmTelaInicial.getContentPane().add(btnCadastroAutorizacao);
 		
 		JButton btnPesquisar = new JButton("Pesquisar um aluno ou responsável");
+		btnPesquisar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				pesquisaPessoa.setVisible(true);
+			}
+		});
 		btnPesquisar.setBounds(200, 110, 304, 89);
 		frmTelaInicial.getContentPane().add(btnPesquisar);
 		

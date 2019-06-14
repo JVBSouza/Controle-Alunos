@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexaoBD {
 	
 	public static Connection getConexao() throws SQLException {
-		//retornar conexão com o banco de daods
+		//retornar conexï¿½o com o banco de daods
 		/*
 		Connection conn = null;
 		try {
@@ -21,7 +21,7 @@ public class ConexaoBD {
 		
 		
 		return DriverManager.getConnection(
-				"jdbc:mysql://localhost/teste_PI?"+
+				"jdbc:mysql://localhost/pi_controle?"+
 				"user=root&password=" //xampp
 				);
 	}
