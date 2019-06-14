@@ -148,14 +148,14 @@ public class CadastroResponsavel extends JFrame {
 		lblNewLabel_1.setBounds(10, 110, 125, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JFormattedTextField dataNasc = new JFormattedTextField();
-		dataNasc.setBounds(145, 110, 180, 17);
-		contentPane.add(dataNasc);
+		JFormattedTextField dataNascimento = new JFormattedTextField();
+		dataNascimento.setBounds(145, 110, 180, 17);
+		contentPane.add(dataNascimento);
 		
 		MaskFormatter dataMask;
 		try {
 			dataMask = new MaskFormatter("##/##/####");
-			dataMask.install(dataNasc);
+			dataMask.install(dataNascimento);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,7 +170,7 @@ public class CadastroResponsavel extends JFrame {
 				String vRg = rg.getText();
 				String vTelefone = telefone.getText();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				LocalDate vDataNasc = LocalDate.parse(dataNasc.getText(), formatter);
+				LocalDate vDataNasc = LocalDate.parse(dataNascimento.getText(), formatter);
 				String vendereco = endereco.getText();
 				String vparentesco = (String) parentesco.getSelectedItem();
 												

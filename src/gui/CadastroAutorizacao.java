@@ -1,13 +1,20 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -17,15 +24,6 @@ import controle.ResponsavelController;
 import modelo.Aluno;
 import modelo.Autorizacao;
 import modelo.Responsavel;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JRadioButton;
 
 public class CadastroAutorizacao extends JFrame {
 
@@ -111,7 +109,7 @@ public class CadastroAutorizacao extends JFrame {
 		matricula.setBounds(145, 35, 120, 17);
 		contentPane.add(matricula);
 		matricula.setColumns(10);
-				
+
 		nomeAluno = new JTextField();
 		nomeAluno.setBounds(145, 60, 200, 17);
 		contentPane.add(nomeAluno);
