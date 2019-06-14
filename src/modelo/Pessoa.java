@@ -6,7 +6,7 @@ public class Pessoa {
 
 	private String nome;
 	private String cpf; //CPF com 11 n�meros - mudar pra outro tipo
-	private int rg;
+	private String rg;
 	private String telefone;
 	private LocalDate datanasc;
 	private String endereco;
@@ -17,7 +17,7 @@ public class Pessoa {
 	public String getCpf() {
 		return cpf;
 	}
-	public int getRg() {
+	public String getRg() {
 		return rg;
 	}
 	public String getTelefone() {
@@ -36,8 +36,8 @@ public class Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public void setRg(int rg) {
-		this.rg = rg;
+	public void setRg(String rg2) {
+		this.rg = rg2;
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;

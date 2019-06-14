@@ -71,8 +71,10 @@ public class PesquisaPessoa extends JFrame {
 	 */
 	public PesquisaPessoa() {
 		setTitle("Pesquisa de pessoa");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 300);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -214,7 +216,7 @@ public class PesquisaPessoa extends JFrame {
 					
 					aluno.setNome(nome.getText());
 					aluno.setCpf(cpf.getText());
-					aluno.setRg(Integer.parseInt(rg.getText()));
+					aluno.setRg(rg.getText());
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 					aluno.setDatanasc(LocalDate.parse(dataNasc.getText(), formatter));
 					aluno.setEndereco(endereco.getText());
@@ -226,7 +228,7 @@ public class PesquisaPessoa extends JFrame {
 					
 					responsavel.setNome(nome.getText());
 					responsavel.setCpf(cpf.getText());
-					responsavel.setRg(Integer.parseInt(rg.getText()));
+					responsavel.setRg(rg.getText());
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 					responsavel.setDatanasc(LocalDate.parse(dataNasc.getText(), formatter));
 					responsavel.setEndereco(endereco.getText());
@@ -380,8 +382,8 @@ public class PesquisaPessoa extends JFrame {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 					dataNasc.setText(aluno.getDatanasc().format(formatter));
 					endereco.setText(aluno.getEndereco());
-//					resp1.setText(aluno.getResponsavel1());
-//					resp2.setText(aluno.getResponsavel2());
+					resp1.setText((String.valueOf(aluno.getResponsavel1())));
+					resp2.setText((String.valueOf(aluno.getResponsavel2())));
 					
 				} else if (rdbtnResponsavel.isSelected()) {				
 					int vID = Integer.parseInt(id.getText());

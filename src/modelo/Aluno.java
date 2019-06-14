@@ -3,20 +3,16 @@ package modelo;
 import java.time.LocalDate;
 import java.util.Date;
 
+import controle.ResponsavelController;
+
 public class Aluno extends Pessoa {
 
 	protected int matricula; //cod aluno
-	protected Responsavel responsavel1;
-	protected Responsavel responsavel2;
+	protected int responsavel1;
+	protected int responsavel2;
 	
-	public Aluno(String nome, String cpf, int rg, String telefone, LocalDate dataNasc, String endereco) {
-//		this.nome = nome;
-//		this.cpf = cpf; //cpf tem mais que 11 numeros ver isso
-//		this.rg = rg;
-//		this.telefone = telefone;
-//		this.dataNasc = dataNasc;
-//		this.endereco = endereco;
-		this.matricula = 1;  //Why?
+	public Aluno(String nome, String cpf, String rg, String telefone, LocalDate dataNasc, String endereco, int resp1, int resp2) {
+//		this.matricula = 0;  //Why?
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setDatanasc(dataNasc);
@@ -24,17 +20,19 @@ public class Aluno extends Pessoa {
 		this.setEndereco(endereco);
 		this.setTelefone(telefone);
 		
+		this.responsavel1 = resp1;
+		this.responsavel2 = resp2;
 	}
 
 	public int getMatricula() {
 		return matricula;
 	}
 
-	public Responsavel getResponsavel1() {
+	public int getResponsavel1() {
 		return responsavel1;
 	}
 
-	public Responsavel getResponsavel2() {
+	public int getResponsavel2() {
 		return responsavel2;
 	}
 
@@ -43,12 +41,16 @@ public class Aluno extends Pessoa {
 		return "Aluno " + this.getNome()+ ", CPF: "+ this.getCpf();
 	}
 
-	public void setResponsavel1(Responsavel responsavel1) {
+	public void setResponsavel1(int responsavel1) {
 		this.responsavel1 = responsavel1;
 	}
 
-	public void setResponsavel2(Responsavel responsavel2) {
+	public void setResponsavel2(int responsavel2) {
 		this.responsavel2 = responsavel2;
+	}
+
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
 	}
 	
 	

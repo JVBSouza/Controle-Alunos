@@ -16,7 +16,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controle.AlunoController;
+import controle.ResponsavelController;
 import modelo.Aluno;
+import modelo.Responsavel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -179,18 +181,18 @@ public class CadastroAluno extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				String vNome = nome.getText();
 				String vCpf = cpf.getText();
-				int vRg = Integer.parseInt(rg.getText());
+				String vRg = rg.getText();
 				String vTelefone = telefone.getText();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate vDataNasc = LocalDate.parse(dataNasc.getText(), formatter);
 				String vendereco = endereco.getText();
-				
-				
-				Aluno aluno = new Aluno(vNome, vCpf, vRg, vTelefone, vDataNasc, vendereco);
+				int vresp1 = Integer.parseInt(resp1.getText());
+				int vresp2 = Integer.parseInt(resp2.getText());
+							
+				Aluno aluno = new Aluno(vNome, vCpf, vRg, vTelefone, vDataNasc, vendereco, vresp1, vresp2);
 				AlunoController control = new AlunoController();
 				
 				control.persist(aluno);
-				
 			}
 		});
 		btnCadastrarAluno.setBounds(145, 215, 200, 34);

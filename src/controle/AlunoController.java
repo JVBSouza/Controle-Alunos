@@ -7,8 +7,6 @@ import modelo.Aluno;
 public class AlunoController {
 
 	public void persist(Aluno aluno) {
-		System.out.println("imprimindo");
-		System.out.println(aluno.toString());
 		AlunoRepository rep = new AlunoRepository();
 		rep.persist(aluno);
 	}
