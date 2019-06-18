@@ -31,6 +31,7 @@ import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.SystemColor;
 
 public class PesquisaPessoa extends JFrame {
 
@@ -202,12 +203,15 @@ public class PesquisaPessoa extends JFrame {
 		
 		JButton btnProcurar = new JButton("Procurar");
 		JButton btnDeletar = new JButton("Deletar pessoa");
-		btnDeletar.setForeground(new Color(255, 255, 255));
-		btnDeletar.setBackground(new Color(255, 0, 0));
+		btnDeletar.setForeground(Color.RED);
+		btnDeletar.setBackground(Color.LIGHT_GRAY);
 		JButton btnCancelar = new JButton("Cancelar edição");
+		btnCancelar.setBackground(Color.LIGHT_GRAY);
 		JButton btnEditar = new JButton("Editar pessoa");
+		btnEditar.setForeground(Color.BLACK);
 		JButton btnSalvar = new JButton("Salvar edição");
-		btnSalvar.setBackground(new Color(50, 205, 50));
+		btnSalvar.setForeground(new Color(0, 128, 0));
+		btnSalvar.setBackground(Color.LIGHT_GRAY);
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -254,8 +258,7 @@ public class PesquisaPessoa extends JFrame {
 				parentesco.setEditable(false);
 			}
 		});
-		btnSalvar.setEnabled(false);
-		btnSalvar.setBounds(340, 152, 150, 25);
+		btnSalvar.setBounds(340, 145, 150, 25);
 		contentPane.add(btnSalvar);
 		
 		btnCancelar.addMouseListener(new MouseAdapter() {
@@ -300,8 +303,7 @@ public class PesquisaPessoa extends JFrame {
 			
 			}
 		});
-		btnCancelar.setEnabled(false);
-		btnCancelar.setBounds(340, 190, 150, 25);
+		btnCancelar.setBounds(340, 185, 150, 25);
 		contentPane.add(btnCancelar);
 		
 		
@@ -329,12 +331,8 @@ public class PesquisaPessoa extends JFrame {
 				}
 			}
 		});
-		btnEditar.setEnabled(false);
 		btnEditar.setBounds(340, 71, 150, 61);
 		contentPane.add(btnEditar);
-				
-		
-		btnDeletar.setEnabled(false);
 		btnDeletar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -359,7 +357,7 @@ public class PesquisaPessoa extends JFrame {
 				}
 			}
 		});
-		btnDeletar.setBounds(340, 230, 150, 20);
+		btnDeletar.setBounds(340, 225, 150, 25);
 		contentPane.add(btnDeletar);
 		
 		
