@@ -12,13 +12,17 @@ public class Registro {
 	private String tipo;
 	
 	public Registro(int codOperador, int codAutoriza, int matricula, LocalDateTime data, String tipo) {
+		this(codOperador, matricula, data, tipo);		
 		this.codAutoriza = codAutoriza;
+	}
+
+	public Registro(int codOperador, int matricula, LocalDateTime data, String tipo) {		
 		this.codOperador = codOperador;
 		this.matricula = matricula;
 		this.data = data;
 		this.tipo = tipo;		
 	}
-
+	
 	public int getCodRegistro() {
 		return codRegistro;
 	}

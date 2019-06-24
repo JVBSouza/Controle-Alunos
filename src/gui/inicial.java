@@ -20,8 +20,9 @@ public class inicial {
 	private JFrame cadastroResponsavel;
 	private JFrame cadastroAutorizacao;
 	private JFrame pesquisaPessoa;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JFrame cadastroRegistro;
+	private JTextField user;
+	private JTextField senha;
 
 	/**
 	 * Launch the application.
@@ -48,6 +49,7 @@ public class inicial {
 		this.cadastroResponsavel = new CadastroResponsavel();
 		this.cadastroAutorizacao = new CadastroAutorizacao();  //<<
 		this.pesquisaPessoa = new PesquisaPessoa();
+		this.cadastroRegistro = new CadastroRegistro();
 	}
 
 	/**
@@ -103,6 +105,12 @@ public class inicial {
 		frmTelaInicial.getContentPane().add(btnPesquisar);
 		
 		JButton btnRegistrar = new JButton("Registro entrada ou saída");
+		btnRegistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cadastroRegistro.setVisible(true);
+			}
+		});
 		btnRegistrar.setBounds(200, 210, 304, 40);
 		frmTelaInicial.getContentPane().add(btnRegistrar);
 		
@@ -116,14 +124,14 @@ public class inicial {
 		lblSenha.setBounds(144, 61, 46, 20);
 		frmTelaInicial.getContentPane().add(lblSenha);
 		
-		textField = new JTextField();
-		textField.setBounds(200, 31, 86, 20);
-		frmTelaInicial.getContentPane().add(textField);
-		textField.setColumns(10);
+		user = new JTextField();
+		user.setBounds(200, 31, 86, 20);
+		frmTelaInicial.getContentPane().add(user);
+		user.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(200, 61, 86, 20);
-		frmTelaInicial.getContentPane().add(textField_1);
+		senha = new JTextField();
+		senha.setColumns(10);
+		senha.setBounds(200, 61, 86, 20);
+		frmTelaInicial.getContentPane().add(senha);
 	}
 }

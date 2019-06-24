@@ -14,12 +14,16 @@ public class RegistroRepository {
 
 	public void persist(Registro registro) {
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO registros (cod_operador, cod_autorizacao, matricula, data, tipo) VALUES " +
+		String sql = "INSERT INTO registros (cod_user, cod_autoriza, matricula, hora, tipo) VALUES " +
 					"(?, ?, ?, ?, ?)";
 		try (Connection conn = ConexaoBD.getConexao();) {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, registro.getCodOperador());
-			ps.setInt(2, registro.getCodAutoriza());
+			if (registro.getCodAutoriza() == 0) {
+				ps.setNull(2, java.sql.Types.INTEGER);
+			} else {
+				ps.setInt(2, registro.getCodAutoriza());
+			}
 			ps.setInt(3, registro.getMatricula());
 			ps.setTimestamp(4, java.sql.Timestamp.valueOf(registro.getData()));
 			ps.setString(5, registro.getTipo());
