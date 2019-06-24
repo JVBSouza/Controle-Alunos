@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.RegistroController;
+import modelo.Registro;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -13,12 +17,16 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class Registro extends JFrame {
+public class CadastroRegistro extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField codigoOperador;
-	private JTextField numeroMatricula;
+	private JTextField cod_op;
+	private JTextField matricula;
 	private final ButtonGroup buttonTipo = new ButtonGroup();
 	private final ButtonGroup buttonPossuiAutorizacao = new ButtonGroup();
 
@@ -29,7 +37,7 @@ public class Registro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registro frame = new Registro();
+					CadastroRegistro frame = new CadastroRegistro();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,9 +49,9 @@ public class Registro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Registro() {
+	public CadastroRegistro() {
 		setTitle("Registros de entrada e saída");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,75 +63,105 @@ public class Registro extends JFrame {
 		lblCdigoDoOperador.setBounds(10, 10, 125, 17);
 		contentPane.add(lblCdigoDoOperador);
 		
-		codigoOperador = new JTextField();
-		codigoOperador.setBounds(145, 10, 200, 17);
-		contentPane.add(codigoOperador);
-		codigoOperador.setColumns(10);
+		cod_op = new JTextField();
+		cod_op.setBounds(145, 10, 200, 17);
+		contentPane.add(cod_op);
+		cod_op.setColumns(10);
 		
 		JLabel lblNumeroMatricula = new JLabel("Número da matrícula:");
 		lblNumeroMatricula.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNumeroMatricula.setBounds(10, 35, 124, 17);
 		contentPane.add(lblNumeroMatricula);
 		
-		numeroMatricula = new JTextField();
-		numeroMatricula.setColumns(10);
-		numeroMatricula.setBounds(145, 35, 200, 17);
-		contentPane.add(numeroMatricula);
+		matricula = new JTextField();
+		matricula.setColumns(10);
+		matricula.setBounds(145, 35, 200, 17);
+		contentPane.add(matricula);
 		
 		JLabel lblDataAutorizacao = new JLabel("Data:");
 		lblDataAutorizacao.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDataAutorizacao.setBounds(10, 60, 124, 17);
 		contentPane.add(lblDataAutorizacao);
 		
-		JFormattedTextField dataAutorizacao = new JFormattedTextField();
-		dataAutorizacao.setColumns(10);
-		dataAutorizacao.setBounds(145, 60, 200, 17);
-		contentPane.add(dataAutorizacao);
+		JFormattedTextField data = new JFormattedTextField();
+		data.setColumns(10);
+		data.setBounds(145, 60, 200, 17);
+		contentPane.add(data);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy  HH:mm:ss");
+		data.setText(LocalDateTime.now().format(formatter));
 		
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTipo.setBounds(11, 85, 124, 17);
 		contentPane.add(lblTipo);
 		
-		JRadioButton rdbtnEntrada = new JRadioButton("Entrada");
-		rdbtnEntrada.setSelected(true);
-		buttonTipo.add(rdbtnEntrada);
-		rdbtnEntrada.setBounds(145, 85, 89, 17);
-		contentPane.add(rdbtnEntrada);
+		JRadioButton rdEntrada = new JRadioButton("Entrada");
+		rdEntrada.setSelected(true);
+		buttonTipo.add(rdEntrada);
+		rdEntrada.setBounds(145, 85, 89, 17);
+		contentPane.add(rdEntrada);
 		
-		JRadioButton rdbtnSada = new JRadioButton("Saída");
-		buttonTipo.add(rdbtnSada);
-		rdbtnSada.setBounds(145, 105, 135, 17);
-		contentPane.add(rdbtnSada);
+		JRadioButton rdSaida = new JRadioButton("Saída");
+		buttonTipo.add(rdSaida);
+		rdSaida.setBounds(145, 105, 135, 17);
+		contentPane.add(rdSaida);
 		
-		JRadioButton rdbtnNo = new JRadioButton("Não");
-		rdbtnNo.setSelected(true);
-		buttonPossuiAutorizacao.add(rdbtnNo);
-		rdbtnNo.setBounds(145, 135, 62, 17);
-		contentPane.add(rdbtnNo);
+		JRadioButton rdNo = new JRadioButton("Não");
+		rdNo.setSelected(true);
+		buttonPossuiAutorizacao.add(rdNo);
+		rdNo.setBounds(145, 135, 62, 17);
+		contentPane.add(rdNo);
 		
 		JLabel lblPossuiAutorizao_1 = new JLabel("Possui autorização?");
 		lblPossuiAutorizao_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPossuiAutorizao_1.setBounds(10, 135, 124, 17);
 		contentPane.add(lblPossuiAutorizao_1);
 		
-		JRadioButton rdbtnSim = new JRadioButton("Sim");
-		buttonPossuiAutorizacao.add(rdbtnSim);
-		rdbtnSim.setBounds(145, 155, 56, 17);
-		contentPane.add(rdbtnSim);
+		JRadioButton rdYes = new JRadioButton("Sim");
+		buttonPossuiAutorizacao.add(rdYes);
+		rdYes.setBounds(145, 155, 56, 17);
+		contentPane.add(rdYes);
 		
-		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(145, 203, 200, 34);
-		contentPane.add(btnRegistrar);
-		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setColumns(10);
-		formattedTextField.setBounds(271, 154, 74, 17);
-		contentPane.add(formattedTextField);
+		JFormattedTextField autoriza = new JFormattedTextField();
+		autoriza.setColumns(10);
+		autoriza.setBounds(271, 154, 74, 17);
+		contentPane.add(autoriza);
 		
 		JLabel lblNmeroDaAutorizao = new JLabel("Número");
 		lblNmeroDaAutorizao.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNmeroDaAutorizao.setBounds(210, 154, 56, 17);
 		contentPane.add(lblNmeroDaAutorizao);
+		
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int vUser = Integer.parseInt(cod_op.getText());
+				int vMatricula = Integer.parseInt(matricula.getText());
+				LocalDateTime vData = LocalDateTime.parse(data.getText(),formatter);
+				String vTipo;
+				int vAutoriza = 0;
+				Registro registro;
+				if (rdEntrada.isSelected()) {
+					vTipo = "Entrada";
+				} else {
+					vTipo = "Saída";
+				}
+				if (rdYes.isSelected()) {
+					vAutoriza = Integer.parseInt(autoriza.getText());
+					registro = new Registro(vUser, vAutoriza,vMatricula, vData, vTipo);
+				} else {
+					registro = new Registro(vUser, vMatricula, vData, vTipo);
+				}				
+				
+				RegistroController control = new RegistroController();
+				control.persist(registro);
+				
+				
+			}
+		});
+		btnRegistrar.setBounds(145, 203, 200, 34);
+		contentPane.add(btnRegistrar);
 	}
 }

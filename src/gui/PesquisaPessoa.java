@@ -220,7 +220,9 @@ public class PesquisaPessoa extends JFrame {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 					aluno.setDatanasc(LocalDate.parse(dataNasc.getText(), formatter));
 					aluno.setEndereco(endereco.getText());
-					//aluno.setResponsavel1(resp1.);
+					aluno.setTelefone(telefone.getText());
+					aluno.setResponsavel1(Integer.parseInt(resp1.getText()));
+					aluno.setResponsavel2(Integer.parseInt(resp2.getText()));
 					
 					control.update(Integer.parseInt(id.getText()), aluno);
 				} else if (rdbtnResponsavel.isSelected()) {
