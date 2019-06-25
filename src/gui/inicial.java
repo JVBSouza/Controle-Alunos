@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class inicial {
 
@@ -61,57 +63,41 @@ public class inicial {
 		frmTelaInicial.setBounds(100, 100, 530, 300);
 		frmTelaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTelaInicial.getContentPane().setLayout(null);
-		
-		JButton btnCadastroDeAluno = new JButton("Cadastrar novo aluno");
-		btnCadastroDeAluno.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//System.out.println("printei");
-				cadastroAluno.setVisible(true);
-			}
-		});
-		btnCadastroDeAluno.setBounds(10, 110, 180, 40);
-		frmTelaInicial.getContentPane().add(btnCadastroDeAluno);
 
-		JButton btnCadastroDeResponsavel = new JButton("Cadastrar novo responsável");
-		btnCadastroDeResponsavel.addMouseListener(new MouseAdapter() {
+		JButton btnCadastrarPessoa = new JButton("Cadastrar");
+		btnCadastrarPessoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cadastroResponsavel.setVisible(true);
 				
 			}
 		});
-		btnCadastroDeResponsavel.setBounds(10, 159, 180, 40);
-		frmTelaInicial.getContentPane().add(btnCadastroDeResponsavel);
+		btnCadastrarPessoa.setBounds(135, 110, 115, 40);
+		frmTelaInicial.getContentPane().add(btnCadastrarPessoa);
 		
-		JButton btnCadastroAutorizacao = new JButton("Cadastrar uma autorização");
-		btnCadastroAutorizacao.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cadastroAutorizacao.setVisible(true);
-			}
-		});
-		btnCadastroAutorizacao.setBounds(10, 210, 180, 40);
-		frmTelaInicial.getContentPane().add(btnCadastroAutorizacao);
-		
-		JButton btnPesquisar = new JButton("Pesquisar um aluno ou responsável");
-		btnPesquisar.addMouseListener(new MouseAdapter() {
+		JButton btnPesquisarPessoa = new JButton("Pesquisar");
+		btnPesquisarPessoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				pesquisaPessoa.setVisible(true);
 			}
 		});
-		btnPesquisar.setBounds(200, 110, 304, 89);
-		frmTelaInicial.getContentPane().add(btnPesquisar);
+		btnPesquisarPessoa.setBounds(260, 110, 115, 40);
+		frmTelaInicial.getContentPane().add(btnPesquisarPessoa);
 		
-		JButton btnRegistrar = new JButton("Registro entrada ou saída");
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cadastroRegistro.setVisible(true);
+			}
+		});
 		btnRegistrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cadastroRegistro.setVisible(true);
 			}
 		});
-		btnRegistrar.setBounds(200, 210, 304, 40);
+		btnRegistrar.setBounds(10, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnRegistrar);
 		
 		JLabel lblUsurio = new JLabel("Usuário");
@@ -125,7 +111,7 @@ public class inicial {
 		frmTelaInicial.getContentPane().add(lblSenha);
 		
 		user = new JTextField();
-		user.setBounds(200, 31, 86, 20);
+		user.setBounds(200, 30, 86, 20);
 		frmTelaInicial.getContentPane().add(user);
 		user.setColumns(10);
 		
@@ -133,5 +119,9 @@ public class inicial {
 		senha.setColumns(10);
 		senha.setBounds(200, 61, 86, 20);
 		frmTelaInicial.getContentPane().add(senha);
+		
+		JButton btnRelatorio = new JButton("Relatório");
+		btnRelatorio.setBounds(385, 110, 115, 40);
+		frmTelaInicial.getContentPane().add(btnRelatorio);
 	}
 }
