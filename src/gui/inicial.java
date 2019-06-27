@@ -1,14 +1,19 @@
 package gui;
 
 import java.awt.EventQueue;
+import javax.swing.JFileChooser;
 
 import javax.swing.JFrame;
 
 import controle.ResponsavelController;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -47,9 +52,10 @@ public class inicial {
 	 */
 	public inicial() {
 		initialize();
-		this.cadastroAluno = new CadastroAluno(); //<<
+		this.cadastroAluno = new CadastroAluno(); // <<
 		this.cadastroResponsavel = new CadastroResponsavel();
-		this.cadastroAutorizacao = new CadastroAutorizacao();  //<<
+		this.cadastroAutorizacao = new CadastroAutorizacao(); // <<
+		this.pesquisaPessoa = new PesquisaPessoa();
 		this.pesquisaPessoa = new PesquisaPessoa();
 		this.cadastroRegistro = new CadastroRegistro();
 	}
@@ -121,7 +127,39 @@ public class inicial {
 		frmTelaInicial.getContentPane().add(senha);
 		
 		JButton btnRelatorio = new JButton("Relatório");
+		btnRelatorio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
 		btnRelatorio.setBounds(385, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnRelatorio);
+		
+//		//criacao de relatorios
+//		
+//		//abrir janela salvar
+//		public static void main(String[]args) {
+//			escolherArquivo();
+//		}
+//		protected static File escolherArquivo () {
+//			File relatorio = null;
+//			JFileChooser fc = new JFileChooser();
+//			int resp = fc.showSaveDialog(this.initialize();
+//			if (resp == JFileChooser.APPROVE_OPTION) {
+//				relatorio = fc.getSelectedFile();
+//			}
+//			return relatorio;
+//		
+//		//gravar arquivo
+//		protected static void gravar(File arquivo) {
+//			try (FileWriter fw = new Filewriter (arquivo)) {
+//				fw.write("COLUNA 1;COLUNA 2;COLUNA3\r\n");
+//				fw.write("José;Costa;43433\r\n");
+//				fw.write("Joao;Rafael;43433\r\n");
+//				fw.write("Pedro;Manoel;43433\r\n");
+//				fw.flush();
+//			} catch (IOException ex)
+//		}
+//		}
 	}
 }
