@@ -175,7 +175,7 @@ public class CadastroAluno extends JFrame {
 			e.printStackTrace();
 		}
 		
-		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
+		JButton btnCadastrarAluno = new JButton("Finalizar Cadastro");
 		btnCadastrarAluno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

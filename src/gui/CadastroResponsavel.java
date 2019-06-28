@@ -161,7 +161,7 @@ public class CadastroResponsavel extends JFrame {
 			e.printStackTrace();
 		}
 		
-		JButton btnCadastrar = new JButton("Cadastrar novo responsável");
+		JButton btnCadastrar = new JButton("Finalizar cadastro");
 		btnCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

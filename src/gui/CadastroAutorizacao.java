@@ -24,6 +24,7 @@ import controle.ResponsavelController;
 import modelo.Aluno;
 import modelo.Autorizacao;
 import modelo.Responsavel;
+import javax.swing.ButtonGroup;
 
 public class CadastroAutorizacao extends JFrame {
 
@@ -40,6 +41,7 @@ public class CadastroAutorizacao extends JFrame {
 	private Responsavel responsavel1;
 	private Responsavel responsavel2;
 	private JTextField descricao;
+	private final ButtonGroup rdResponsavel1e2 = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -79,12 +81,12 @@ public class CadastroAutorizacao extends JFrame {
 		lblNewLabel.setBounds(10, 60, 124, 17);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNomeDoResponsvel1 = new JLabel("Nome do responsável 1:");
+		JLabel lblNomeDoResponsvel1 = new JLabel("Nome Responsável 1:");
 		lblNomeDoResponsvel1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNomeDoResponsvel1.setBounds(10, 85, 124, 17);
 		contentPane.add(lblNomeDoResponsvel1);
 		
-		JLabel lblNomeDoResponsvel2 = new JLabel("Nome do responsável 2:");
+		JLabel lblNomeDoResponsvel2 = new JLabel("Nome Responsável 2:");
 		lblNomeDoResponsvel2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNomeDoResponsvel2.setBounds(10, 110, 124, 17);
 		contentPane.add(lblNomeDoResponsvel2);
@@ -140,16 +142,19 @@ public class CadastroAutorizacao extends JFrame {
 		}
 		
 		JRadioButton resp1 = new JRadioButton("");
+		resp1.setSelected(true);
+		rdResponsavel1e2.add(resp1);
 		resp1.setBounds(350, 85, 20, 17);
 		contentPane.add(resp1);
 		
 		JRadioButton resp2 = new JRadioButton("");
+		rdResponsavel1e2.add(resp2);
 		resp2.setBounds(350, 110, 20, 17);
 		contentPane.add(resp2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Selecione um ");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setBounds(375, 85, 99, 23);
+		lblNewLabel_1.setBounds(376, 86, 99, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("responsável");
@@ -187,7 +192,7 @@ public class CadastroAutorizacao extends JFrame {
 		btnNewButton.setBounds(270, 34, 75, 19);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Cadastrar Autorização");
+		JButton btnNewButton_1 = new JButton("Finalizar cadastro");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
