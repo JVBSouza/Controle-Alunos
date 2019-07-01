@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class inicial {
 
@@ -133,6 +134,11 @@ public class inicial {
 		});
 		btnRelatorio.setBounds(385, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnRelatorio);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(inicial.class.getResource("/images/logo.jpg")));
+		lblNewLabel.setBounds(106, 161, 318, 89);
+		frmTelaInicial.getContentPane().add(lblNewLabel);
 		
 //		//criacao de relatorios
 //		
