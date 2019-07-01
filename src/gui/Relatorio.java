@@ -9,10 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Relatorio extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -36,7 +40,7 @@ public class Relatorio extends JFrame {
 	public Relatorio() {
 		setTitle("Exportação dos relatórios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 603, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,5 +55,19 @@ public class Relatorio extends JFrame {
 		});
 		btnExportSimples.setBounds(132, 145, 129, 46);
 		contentPane.add(btnExportSimples);
+		
+		textField = new JTextField();
+		textField.setBounds(100, 50, 350, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Diretório:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(10, 50, 80, 20);
+		contentPane.add(lblNewLabel);
+		
+		JButton button = new JButton("...");
+		button.setBounds(460, 50, 30, 20);
+		contentPane.add(button);
 	}
 }
