@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.JEditorPane;
+import javax.swing.JTextArea;
 
 public class EscolherCadastrar extends JFrame {
 
@@ -56,15 +59,15 @@ public class EscolherCadastrar extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton button = new JButton("Novo Aluno"); // ("<html>Novo <br/> Aluno</html>");
-		button.addMouseListener(new MouseAdapter() {
+		JButton btnNovoAluno = new JButton("Novo Aluno"); // ("<html>Novo <br/> Aluno</html>");
+		btnNovoAluno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cadastroAluno.setVisible(true); //
 			}
 		});
-		button.setBounds(10, 110, 140, 40);
-		contentPane.add(button);
+		btnNovoAluno.setBounds(10, 134, 140, 40);
+		contentPane.add(btnNovoAluno);
 
 		JButton btnNovoResponsvel = new JButton("Novo Responsável");
 		btnNovoResponsvel.addActionListener(new ActionListener() {
@@ -72,7 +75,7 @@ public class EscolherCadastrar extends JFrame {
 				cadastroResponsavel.setVisible(true); //
 			}
 		});
-		btnNovoResponsvel.setBounds(172, 110, 140, 40);
+		btnNovoResponsvel.setBounds(172, 134, 140, 40);
 		contentPane.add(btnNovoResponsvel);
 
 		JButton btnNovaAutorizao = new JButton("Nova Autorização");
@@ -82,7 +85,7 @@ public class EscolherCadastrar extends JFrame {
 				cadastroAutorizacao.setVisible(true); //
 			}
 		});
-		btnNovaAutorizao.setBounds(335, 110, 140, 40);
+		btnNovaAutorizao.setBounds(335, 134, 140, 40);
 		contentPane.add(btnNovaAutorizao);
 		
 	}

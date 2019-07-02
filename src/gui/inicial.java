@@ -135,9 +135,10 @@ public class inicial {
 		btnRelatorio.setBounds(385, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnRelatorio);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(inicial.class.getResource("/images/logo.jpg")));
-		lblNewLabel.setBounds(106, 161, 318, 89);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(inicial.class.getResource("/images/final.PNG")));
+		lblNewLabel.setBounds(0, 171, 514, 65);
 		frmTelaInicial.getContentPane().add(lblNewLabel);
 		
 //		//criacao de relatorios
