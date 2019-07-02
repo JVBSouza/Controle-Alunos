@@ -141,31 +141,5 @@ public class inicial {
 		lblNewLabel.setBounds(0, 171, 514, 65);
 		frmTelaInicial.getContentPane().add(lblNewLabel);
 		
-//		//criacao de relatorios
-//		
-//		//abrir janela salvar
-//		public static void main(String[]args) {
-//			escolherArquivo();
-//		}
-//		protected static File escolherArquivo () {
-//			File relatorio = null;
-//			JFileChooser fc = new JFileChooser();
-//			int resp = fc.showSaveDialog(this.initialize();
-//			if (resp == JFileChooser.APPROVE_OPTION) {
-//				relatorio = fc.getSelectedFile();
-//			}
-//			return relatorio;
-//		
-//		//gravar arquivo
-//		protected static void gravar(File arquivo) {
-//			try (FileWriter fw = new Filewriter (arquivo)) {
-//				fw.write("COLUNA 1;COLUNA 2;COLUNA3\r\n");
-//				fw.write("José;Costa;43433\r\n");
-//				fw.write("Joao;Rafael;43433\r\n");
-//				fw.write("Pedro;Manoel;43433\r\n");
-//				fw.flush();
-//			} catch (IOException ex)
-//		}
-//		}
 	}
 }
