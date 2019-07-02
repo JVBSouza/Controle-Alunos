@@ -15,7 +15,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
+
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class EscolherCadastrar extends JFrame {
 
@@ -52,9 +54,9 @@ public class EscolherCadastrar extends JFrame {
 	}
 
 	private void initialize() {
-		setTitle("Cadastros");
+		setTitle("Cadastrar");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,9 +70,8 @@ public class EscolherCadastrar extends JFrame {
 				cadastroAluno.setVisible(true); //
 			}
 		});
-		btnNovoAluno.setBounds(105, 25, 210, 50);
+		btnNovoAluno.setBounds(10, 134, 145, 40);
 		contentPane.add(btnNovoAluno);
-
 		JButton btnNovoResponsvel = new JButton("Novo Responsável");
 		btnNovoResponsvel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNovoResponsvel.addActionListener(new ActionListener() {
@@ -78,7 +79,7 @@ public class EscolherCadastrar extends JFrame {
 				cadastroResponsavel.setVisible(true); //
 			}
 		});
-		btnNovoResponsvel.setBounds(105, 90, 210, 50);
+		btnNovoResponsvel.setBounds(172, 134, 145, 40);
 		contentPane.add(btnNovoResponsvel);
 
 		JButton btnNovaAutorizao = new JButton("Nova Autorização");
@@ -89,8 +90,26 @@ public class EscolherCadastrar extends JFrame {
 				cadastroAutorizacao.setVisible(true); //
 			}
 		});
-		btnNovaAutorizao.setBounds(105, 155, 210, 50);
+		btnNovaAutorizao.setBounds(335, 134, 145, 40);
 		contentPane.add(btnNovaAutorizao);
-		
+
+		JLabel aluno = new JLabel("");
+		aluno.setHorizontalAlignment(SwingConstants.CENTER);
+		aluno.setIcon(new ImageIcon(EscolherCadastrar.class.getResource("/images/aluno.png")));
+		aluno.setBounds(10, 40, 145, 79);
+		contentPane.add(aluno);
+
+		JLabel responsavel = new JLabel("");
+		responsavel.setHorizontalAlignment(SwingConstants.CENTER);
+		responsavel.setIcon(new ImageIcon(EscolherCadastrar.class.getResource("/images/responsavel.png")));
+		responsavel.setBounds(172, 40, 145, 79);
+		contentPane.add(responsavel);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(EscolherCadastrar.class.getResource("/images/autorizac.png")));
+		lblNewLabel.setBounds(335, 40, 139, 79);
+		contentPane.add(lblNewLabel);
+
 	}
 }
