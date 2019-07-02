@@ -8,11 +8,16 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import modelo.Registro;
 
 public class RegistroRepository {
 
 	public void persist(Registro registro) {
+		
+		
 		PreparedStatement ps = null;
 		String sql = "INSERT INTO registros (cod_user, cod_autoriza, matricula, hora, tipo) VALUES " +
 					"(?, ?, ?, ?, ?)";
@@ -29,8 +34,12 @@ public class RegistroRepository {
 			ps.setString(5, registro.getTipo());
 			ps.executeUpdate();
 		} catch (SQLException ex){
-			// tratar erros
-			System.out.println("Erro:" + ex.getMessage());
+			final JFrame popup = new JFrame();
+			JOptionPane.showMessageDialog(popup,
+				    "Os valores inseridos não constam no banco de dados. Conferir valores",
+				    "Erro nos dados",
+				    JOptionPane.ERROR_MESSAGE);
+			return;
 		} finally { }
 	}
 

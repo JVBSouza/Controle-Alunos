@@ -11,6 +11,7 @@ import controle.RegistroController;
 import modelo.Registro;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -50,6 +51,9 @@ public class CadastroRegistro extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroRegistro() {
+		
+		final JFrame popup = new JFrame();
+		
 		setTitle("Registros de entrada e saída");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 300);
@@ -137,8 +141,30 @@ public class CadastroRegistro extends JFrame {
 		btnRegistrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				int vUser = Integer.parseInt(cod_op.getText());
-				int vMatricula = Integer.parseInt(matricula.getText());
+				int vUser;
+				try {
+					vUser = Integer.parseInt(cod_op.getText());					
+				}
+				catch(RuntimeException e) {
+					JOptionPane.showMessageDialog(popup,
+						    "O valor digitado não é válido",
+						    "Erro no usuário",
+						    JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				int vMatricula;
+				
+				try {
+					vMatricula = Integer.parseInt(matricula.getText());
+				}
+				catch(RuntimeException e) {
+					JOptionPane.showMessageDialog(popup,
+						    "O valor digitado não é válido",
+						    "Erro na matrícula",
+						    JOptionPane.ERROR_MESSAGE);
+					return;
+				}				
 				LocalDateTime vData = LocalDateTime.parse(data.getText(),formatter);
 				String vTipo;
 				int vAutoriza = 0;

@@ -16,33 +16,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class RelatorioRepository {
 
-	// criacao de relatorios
-
-	// abrir janela salvar
-	public static void main(String[] args) {
-//		gravar(escolherArquivo());
+//	public static void main(String[] args) {
+////		gravar(escolherArquivo());
 //		gravarAluno(escolherArquivo());
-		escolherArquivo();
-	}
-
-	public static File escolherArquivo() {
-		File relatorio = null;
-		JFileChooser fc = new JFileChooser();
-		int resp = fc.showSaveDialog(null);
-		// fc.setAcceptAllFileFilterUsed(false);
-		FileFilter csv = new FileNameExtensionFilter("comma separated value", "csv");
-		fc.addChoosableFileFilter(csv);
-		if (resp == JFileChooser.APPROVE_OPTION) {
-			relatorio = fc.getSelectedFile();
-		}
-		System.out.println(relatorio.getAbsolutePath());
-		return relatorio;
-
-		// Para adicionar textbox com file em vez de fazer trocentos botões
-		// https://docs.oracle.com/javase/8/docs/api/java/io/File.html
-		// getAbsolutPath
-
-	}
+//		gravarIrregular(escolherArquivo(), 20190102);
+//		gravarTurma(escolherArquivo(), 1);
+//		gravarMes(escolherArquivo(), 6);
+//		gravarUser(escolherArquivo(), 1);
+//	}
 
 	// gravar arquivo
 	public void gravar(File arquivo) {
@@ -57,11 +38,10 @@ public class RelatorioRepository {
 		}
 	}
 
-	static void gravarAluno(File arquivo) {
+	public static void gravarAluno(File arquivo) {
 		Statement stmt = null;
-		String sql =  "SELECT alunos.matricula, alunos.nome, registros.hora, registros.tipo "
-				+ "FROM registros, alunos, autorizacao "
-				+ "WHERE registros.matricula = alunos.matricula";
+		String sql = "SELECT alunos.matricula, alunos.nome, registros.hora, registros.tipo "
+				+ "FROM registros, alunos, autorizacao " + "WHERE registros.matricula = alunos.matricula";
 		ResultSet rs = null;
 		List<String> saida = new LinkedList<String>();
 		try (Connection conn = ConexaoBD.getConexao();) {
@@ -72,7 +52,7 @@ public class RelatorioRepository {
 				String coluna2 = rs.getString("nome");
 				String coluna3 = rs.getString("hora");
 				String coluna4 = rs.getString("tipo");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3  + ";" + coluna4;
+				String linha = coluna1 + ";" + coluna2 + ";" + coluna3 + ";" + coluna4;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -80,7 +60,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("matricula;nome\r\n");
+			fw.write("Matricula;Nome;Data e Hora; Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -89,11 +69,11 @@ public class RelatorioRepository {
 		}
 	}
 
-	static void gravarIrregular(File arquivo, int matricula) {
+	public static void gravarIrregular(File arquivo, int matricula) {
 		Statement stmt = null;
 		String sql = "SELECT alunos.nome, registros.hora, autorizacao.descr, registros.tipo"
-				+ " FROM registros, alunos, autorizacao "
-				+ "WHERE registros.matricula = "+ matricula + " AND registros.matricula = alunos.matricula "
+				+ " FROM registros, alunos, autorizacao " + "WHERE registros.matricula = " + matricula
+				+ " AND registros.matricula = alunos.matricula "
 				+ "AND autorizacao.cod_autoriza = registros.cod_autoriza";
 		// Aqui ta pedindo a matrícula
 		// Então tem que pedir a matrícula em algum lugar
@@ -108,7 +88,7 @@ public class RelatorioRepository {
 				String coluna2 = rs.getString("hora");
 				String coluna3 = rs.getString("descr");
 				String coluna4 = rs.getString("tipo");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3  + ";" + coluna4;
+				String linha = coluna1 + ";" + coluna2 + ";" + coluna3 + ";" + coluna4;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -116,7 +96,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("matricula;nome\r\n");
+			fw.write("Nome;Horário;Descrição;Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -125,11 +105,18 @@ public class RelatorioRepository {
 		}
 	}
 
-	static void gravarTurma(File arquivo, int turma) {
+	public static void gravarTurma(File arquivo, int turma) {
 		Statement stmt = null;
-		String sql = "Select alunos.matricula, alunos.nome "+
-				"FROM alunos "+
-				" WHERE alunos.matricula between 2019"+turma+"00 and 2019"+turma+"99";
+		String sturma;
+
+		if (turma < 10) {
+			sturma = "0" + String.valueOf(turma);
+		} else {
+			sturma = String.valueOf(turma);
+		}
+
+		String sql = "Select alunos.matricula, alunos.nome " + "FROM alunos " + " WHERE alunos.matricula between 20190"
+				+ sturma + "00 and 20190" + sturma + "99";
 
 		// Aqui ta pedindo a matrícula
 		// Então tem que pedir a matrícula em algum lugar
@@ -150,7 +137,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("matricula;nome\r\n");
+			fw.write("Matrícula;Nome\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -158,14 +145,20 @@ public class RelatorioRepository {
 		} catch (IOException ex) {
 		}
 	}
-	
-	static void gravarMes(File arquivo, int mes) {
+
+	public static void gravarMes(File arquivo, int mes) {
 		Statement stmt = null;
-		String sql = "SELECT alunos.nome as 'Nome Aluno', responsaveis.nome as 'Nome Responsável', autorizacao.data, autorizacao.descr " + 
-				"FROM alunos, responsaveis, autorizacao " + 
-				"WHERE alunos.matricula = autorizacao.matricula " + 
-				"AND autorizacao.cod_resp = responsaveis.cod_resp " + 
-				"AND autorizacao.data between “2019-"+mes+"-01” and “2019-"+mes+"-30";
+		String smes;
+		if (mes < 10) {
+			smes = String.valueOf(mes);
+			smes = "0" + smes;
+		} else {
+			smes = String.valueOf(mes);
+		}
+		String sql = "SELECT alunos.nome as 'Nome Aluno', responsaveis.nome as 'Nome Responsável', autorizacao.data, autorizacao.descr "
+				+ "FROM alunos, responsaveis, autorizacao " + "WHERE alunos.matricula = autorizacao.matricula "
+				+ "AND autorizacao.cod_resp = responsaveis.cod_resp " + "AND autorizacao.data between '2019-" + smes
+				+ "-01' and '2019-" + smes + "-30'";
 		ResultSet rs = null;
 		List<String> saida = new LinkedList<String>();
 		try (Connection conn = ConexaoBD.getConexao();) {
@@ -176,7 +169,7 @@ public class RelatorioRepository {
 				String coluna2 = rs.getString("Nome Responsável");
 				String coluna3 = rs.getString("data");
 				String coluna4 = rs.getString("descr");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3  + ";" + coluna4;
+				String linha = coluna1 + ";" + coluna2 + ";" + coluna3 + ";" + coluna4;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -184,7 +177,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("matricula;nome\r\n");
+			fw.write("Nome do Aluno;Nome do Responsável;Data;Descrição\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -192,4 +185,36 @@ public class RelatorioRepository {
 		} catch (IOException ex) {
 		}
 	}
+
+	public static void gravarUser(File arquivo, int user) {
+		Statement stmt = null;
+		String sUser = String.valueOf(user);
+		String sql = "Select usuarios.nome, registros.hora, registros.tipo " + "FROM registros, usuarios "
+				+ "WHERE registros.cod_user = usuarios.cod_user " + "AND usuarios.cod_user= " + sUser;
+		ResultSet rs = null;
+		List<String> saida = new LinkedList<String>();
+		try (Connection conn = ConexaoBD.getConexao();) {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				String coluna1 = rs.getString("nome");
+				String coluna2 = rs.getString("hora");
+				String coluna3 = rs.getString("tipo");
+				String linha = coluna1 + ";" + coluna2 + ";" + coluna3;
+				saida.add(linha);
+			}
+		} catch (SQLException ex) {
+			System.out.println("Erro:" + ex.getMessage());
+		} finally {
+		}
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write("Nome do operador;Hora;Tipo\r\n");
+			for (String linha : saida) {
+				fw.write(linha + "\r\n");
+				fw.flush();
+			}
+		} catch (IOException ex) {
+		}
+	}
+
 }
