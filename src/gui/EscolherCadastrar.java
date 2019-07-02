@@ -63,7 +63,7 @@ public class EscolherCadastrar extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnNovoAluno = new JButton("Novo Aluno"); // ("<html>Novo <br/> Aluno</html>");
-		btnNovoAluno.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNovoAluno.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovoAluno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -73,7 +73,7 @@ public class EscolherCadastrar extends JFrame {
 		btnNovoAluno.setBounds(10, 134, 145, 40);
 		contentPane.add(btnNovoAluno);
 		JButton btnNovoResponsvel = new JButton("Novo Responsável");
-		btnNovoResponsvel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNovoResponsvel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovoResponsvel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cadastroResponsavel.setVisible(true); //
@@ -83,7 +83,7 @@ public class EscolherCadastrar extends JFrame {
 		contentPane.add(btnNovoResponsvel);
 
 		JButton btnNovaAutorizao = new JButton("Nova Autorização");
-		btnNovaAutorizao.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNovaAutorizao.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovaAutorizao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

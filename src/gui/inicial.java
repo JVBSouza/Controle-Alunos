@@ -123,7 +123,7 @@ public class inicial {
 		senha.setColumns(10);
 		senha.setBounds(200, 61, 86, 20);
 		frmTelaInicial.getContentPane().add(senha);
-
+		//
 		JButton btnRelatorio = new JButton("Relatório");
 		btnRelatorio.addMouseListener(new MouseAdapter() {
 			@Override

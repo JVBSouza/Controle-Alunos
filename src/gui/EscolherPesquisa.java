@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class EscolherPesquisa extends JFrame {
 
@@ -57,8 +60,8 @@ public class EscolherPesquisa extends JFrame {
 				pesquisaAutoriza.setVisible(true);
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBounds(105, 90, 210, 50);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNewButton.setBounds(247, 134, 140, 40);
 		contentPane.add(btnNewButton);
 
 		JButton btnPessoa = new JButton("Pequisa Pessoa");
@@ -67,8 +70,20 @@ public class EscolherPesquisa extends JFrame {
 				pesquisaPessoa.setVisible(true);
 			}
 		});
-		btnPessoa.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnPessoa.setBounds(105, 25, 210, 50);
+		btnPessoa.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnPessoa.setBounds(58, 134, 140, 40);
 		contentPane.add(btnPessoa);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(EscolherPesquisa.class.getResource("/images/aluno.png")));
+		lblNewLabel.setBounds(58, 53, 140, 80);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setIcon(new ImageIcon(EscolherPesquisa.class.getResource("/images/autorizac.png")));
+		lblNewLabel_1.setBounds(247, 62, 140, 71);
+		contentPane.add(lblNewLabel_1);
 	}
 }
