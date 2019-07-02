@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -25,6 +26,8 @@ import modelo.Aluno;
 import modelo.Autorizacao;
 import modelo.Responsavel;
 import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastroAutorizacao extends JFrame {
 
@@ -63,6 +66,8 @@ public class CadastroAutorizacao extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroAutorizacao() {
+		final JFrame popup = new JFrame();
+
 		setTitle("Cadastro de Autorização");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -70,68 +75,70 @@ public class CadastroAutorizacao extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblN = new JLabel("Número da matrícula:");
 		lblN.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblN.setBounds(10, 35, 124, 17);
+		lblN.setBounds(10, 35, 135, 17);
 		contentPane.add(lblN);
-		
-		JLabel lblNewLabel = new JLabel("Nome do aluno");
+
+		JLabel lblNewLabel = new JLabel("Nome do aluno:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(10, 60, 124, 17);
+		lblNewLabel.setBounds(10, 60, 135, 17);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblNomeDoResponsvel1 = new JLabel("Nome Responsável 1:");
 		lblNomeDoResponsvel1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNomeDoResponsvel1.setBounds(10, 85, 124, 17);
+		lblNomeDoResponsvel1.setBounds(10, 85, 135, 17);
 		contentPane.add(lblNomeDoResponsvel1);
-		
+
 		JLabel lblNomeDoResponsvel2 = new JLabel("Nome Responsável 2:");
 		lblNomeDoResponsvel2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNomeDoResponsvel2.setBounds(10, 110, 124, 17);
+		lblNomeDoResponsvel2.setBounds(10, 110, 135, 17);
 		contentPane.add(lblNomeDoResponsvel2);
-		
+
 		JLabel lblDataAutorizacao = new JLabel("Data da autorização:");
 		lblDataAutorizacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDataAutorizacao.setBounds(10, 135, 124, 17);
+		lblDataAutorizacao.setBounds(10, 135, 135, 17);
 		contentPane.add(lblDataAutorizacao);
-		
+
 		JLabel lblUsurio = new JLabel("Usuário:");
 		lblUsurio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUsurio.setBounds(10, 10, 124, 17);
+		lblUsurio.setBounds(10, 10, 135, 17);
 		contentPane.add(lblUsurio);
-		
-		
+
 		usuario = new JTextField();
-		usuario.setBounds(145, 10, 200, 17);
+		usuario.setBounds(155, 10, 210, 17);
 		contentPane.add(usuario);
 		usuario.setColumns(10);
-		
+
 		matricula = new JTextField();
-		matricula.setBounds(145, 35, 120, 17);
+		matricula.setBounds(155, 35, 120, 17);
 		contentPane.add(matricula);
 		matricula.setColumns(10);
 
 		nomeAluno = new JTextField();
-		nomeAluno.setBounds(145, 60, 200, 17);
+		nomeAluno.setEditable(false);
+		nomeAluno.setBounds(155, 60, 210, 17);
 		contentPane.add(nomeAluno);
 		nomeAluno.setColumns(10);
-		
+
 		nomeResponsavel1 = new JTextField();
-		nomeResponsavel1.setBounds(144, 85, 200, 17);
+		nomeResponsavel1.setEditable(false);
+		nomeResponsavel1.setBounds(155, 85, 185, 17);
 		contentPane.add(nomeResponsavel1);
 		nomeResponsavel1.setColumns(10);
-		
+
 		nomeResponsavel2 = new JTextField();
-		nomeResponsavel2.setBounds(144, 110, 200, 17);
+		nomeResponsavel2.setEditable(false);
+		nomeResponsavel2.setBounds(155, 110, 185, 17);
 		contentPane.add(nomeResponsavel2);
 		nomeResponsavel2.setColumns(10);
-		
+
 		dataAutorizacao = new JFormattedTextField();
-		dataAutorizacao.setBounds(144, 135, 200, 17);
+		dataAutorizacao.setBounds(155, 135, 210, 17);
 		contentPane.add(dataAutorizacao);
 		dataAutorizacao.setColumns(10);
-				
+
 		MaskFormatter dataMask;
 		try {
 			dataMask = new MaskFormatter("##/##/####  ##:##:##");
@@ -140,64 +147,94 @@ public class CadastroAutorizacao extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		JRadioButton resp1 = new JRadioButton("");
 		resp1.setSelected(true);
 		rdResponsavel1e2.add(resp1);
-		resp1.setBounds(350, 85, 20, 17);
+		resp1.setBounds(345, 85, 20, 17);
 		contentPane.add(resp1);
-		
+
 		JRadioButton resp2 = new JRadioButton("");
 		rdResponsavel1e2.add(resp2);
-		resp2.setBounds(350, 110, 20, 17);
+		resp2.setBounds(345, 110, 20, 17);
 		contentPane.add(resp2);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Selecione um ");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setBounds(376, 86, 99, 14);
+		lblNewLabel_1.setBounds(375, 85, 80, 17);
 		contentPane.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("responsável");
-		lblNewLabel_2.setBounds(375, 110, 81, 14);
+		lblNewLabel_2.setBounds(380, 110, 80, 17);
 		contentPane.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Descrição:");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_3.setBounds(35, 160, 99, 14);
+		lblNewLabel_3.setBounds(10, 160, 135, 14);
 		contentPane.add(lblNewLabel_3);
-		
+
 		descricao = new JTextField();
-		descricao.setBounds(145, 160, 200, 48);
+		descricao.setBounds(155, 160, 210, 48);
 		contentPane.add(descricao);
 		descricao.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+
+		JButton btnCadastro = new JButton("Finalizar cadastro");
+
+		JButton btnAlunoFind = new JButton("Buscar");
+		btnAlunoFind.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				int vID = Integer.parseInt(matricula.getText());	
-				AlunoController controlaluno = new AlunoController();	
+				int vID;
+				try {
+					vID = Integer.parseInt(matricula.getText());
+				} catch (RuntimeException e) {
+					JOptionPane.showMessageDialog(popup, "Matrícula inválida", "Erro na matrícula",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				AlunoController controlaluno = new AlunoController();
 				aluno = controlaluno.find(vID);
+
+				if (aluno == null) {
+					return;
+				}
 
 				ResponsavelController controlresp = new ResponsavelController();
 				responsavel1 = controlresp.find(aluno.getResponsavel1());
 				responsavel2 = controlresp.find(aluno.getResponsavel2());
-				
+
 				nomeAluno.setText(aluno.getNome());
 				nomeResponsavel1.setText(responsavel1.getNome());
 				nomeResponsavel2.setText(responsavel2.getNome());
-				
+
+				btnCadastro.setEnabled(true);
 			}
 		});
-		btnNewButton.setBounds(270, 34, 75, 19);
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Finalizar cadastro");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				int vUser = Integer.parseInt(usuario.getText());
-				int vMat = Integer.parseInt(matricula.getText());
+		btnAlunoFind.setBounds(280, 34, 85, 19);
+		contentPane.add(btnAlunoFind);
+
+		btnCadastro.setEnabled(false);
+		btnCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int vUser;
+				try {
+					vUser = Integer.parseInt(usuario.getText());
+				} catch (RuntimeException ex) {
+					JOptionPane.showMessageDialog(popup, "Usuário inválido", "Erro na usuário",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				int vMat;
+				try {
+					vMat = Integer.parseInt(matricula.getText());
+				} catch (RuntimeException ex) {
+					JOptionPane.showMessageDialog(popup, "Matrícula inválida", "Erro na matrícula",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				int vResp;
 				if (resp1.isSelected()) {
 					vResp = aluno.getResponsavel1();
@@ -206,18 +243,17 @@ public class CadastroAutorizacao extends JFrame {
 				}
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy  HH:mm:ss");
 				LocalDateTime data = LocalDateTime.parse(dataAutorizacao.getText(), formatter);
-				
-				String desc= descricao.getText();
-				
+
+				String desc = descricao.getText();
+
 				Autorizacao autorizacao = new Autorizacao(vMat, vResp, vUser, data, desc);
 				AutorizacaoController controle = new AutorizacaoController();
 				controle.persist(autorizacao);
-				
+
 			}
 		});
-		btnNewButton_1.setBounds(145, 216, 200, 34);
-		contentPane.add(btnNewButton_1);
-		
-		
+		btnCadastro.setBounds(134, 216, 231, 34);
+		contentPane.add(btnCadastro);
+
 	}
 }

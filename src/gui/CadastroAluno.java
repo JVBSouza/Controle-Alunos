@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -53,6 +54,8 @@ public class CadastroAluno extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroAluno() {
+		final JFrame popup = new JFrame();
+		
 		setTitle("Cadastro de novo aluno");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -99,14 +102,14 @@ public class CadastroAluno extends JFrame {
 		rg.setBounds(145, 60, 200, 17);
 		contentPane.add(rg);
 		
-//		MaskFormatter rgMask;
-//		try {
-//			rgMask = new MaskFormatter("#.###.###-##");
-//			rgMask.install(rg);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		MaskFormatter rgMask;
+		try {
+			rgMask = new MaskFormatter("#.###.###-##");
+			rgMask.install(rg);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		JLabel lblNewLabel_1 = new JLabel("Telefone:");
 		lblNewLabel_1.setBounds(61, 85, 74, 14);
@@ -182,12 +185,25 @@ public class CadastroAluno extends JFrame {
 				String vNome = nome.getText();
 				String vCpf = cpf.getText();
 				String vRg = rg.getText();
+				
+				
 				String vTelefone = telefone.getText();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate vDataNasc = LocalDate.parse(dataNasc.getText(), formatter);
 				String vendereco = endereco.getText();
-				int vresp1 = Integer.parseInt(resp1.getText());
-				int vresp2 = Integer.parseInt(resp2.getText());
+				int vresp1; 
+				int vresp2; 
+				try {
+					vresp1 = Integer.parseInt(resp1.getText());
+					vresp2 = Integer.parseInt(resp2.getText());
+				}
+				catch(RuntimeException e) {
+					JOptionPane.showMessageDialog(popup,
+							"Deve ser inserido o número do código dos responsáveis",
+							"Erro no responsável",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 							
 				Aluno aluno = new Aluno(vNome, vCpf, vRg, vTelefone, vDataNasc, vendereco, vresp1, vresp2);
 				AlunoController control = new AlunoController();

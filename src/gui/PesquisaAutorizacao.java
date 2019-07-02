@@ -52,7 +52,7 @@ public class PesquisaAutorizacao extends JFrame {
 	 * Create the frame.
 	 */
 	public PesquisaAutorizacao() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,7 +65,7 @@ public class PesquisaAutorizacao extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		autoriza = new JTextField();
-		autoriza.setBounds(190, 20, 50, 20);
+		autoriza.setBounds(190, 20, 75, 20);
 		contentPane.add(autoriza);
 		autoriza.setColumns(10);
 		
@@ -121,7 +121,7 @@ public class PesquisaAutorizacao extends JFrame {
 				
 			}
 		});
-		btnProcurar.setBounds(255, 20, 80, 20);
+		btnProcurar.setBounds(275, 20, 105, 20);
 		contentPane.add(btnProcurar);
 		
 		btnCancelar.addActionListener(new ActionListener() {

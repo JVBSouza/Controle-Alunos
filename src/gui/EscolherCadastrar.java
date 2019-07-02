@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class EscolherCadastrar extends JFrame {
 
@@ -51,41 +52,44 @@ public class EscolherCadastrar extends JFrame {
 	}
 
 	private void initialize() {
-		setTitle("Cadastrar");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 300);
+		setTitle("Cadastros");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JButton btnNovoAluno = new JButton("Novo Aluno"); // ("<html>Novo <br/> Aluno</html>");
+		btnNovoAluno.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNovoAluno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cadastroAluno.setVisible(true); //
 			}
 		});
-		btnNovoAluno.setBounds(10, 134, 140, 40);
+		btnNovoAluno.setBounds(105, 25, 210, 50);
 		contentPane.add(btnNovoAluno);
 
 		JButton btnNovoResponsvel = new JButton("Novo Responsável");
+		btnNovoResponsvel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNovoResponsvel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cadastroResponsavel.setVisible(true); //
 			}
 		});
-		btnNovoResponsvel.setBounds(172, 134, 140, 40);
+		btnNovoResponsvel.setBounds(105, 90, 210, 50);
 		contentPane.add(btnNovoResponsvel);
 
 		JButton btnNovaAutorizao = new JButton("Nova Autorização");
+		btnNovaAutorizao.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNovaAutorizao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cadastroAutorizacao.setVisible(true); //
 			}
 		});
-		btnNovaAutorizao.setBounds(335, 134, 140, 40);
+		btnNovaAutorizao.setBounds(105, 155, 210, 50);
 		contentPane.add(btnNovaAutorizao);
 		
 	}
