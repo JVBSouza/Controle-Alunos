@@ -8,15 +8,18 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import modelo.Responsavel;
 
 public class ResponsavelRepository {
 
 	public void persist(Responsavel responsavel) {
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO responsaveis (nome, rg, cpf, telefone, datanasc, endereco, parentesco) VALUES " +
-					"(?, ?, ?, ? , ?, ?, ?)";
-		
+		String sql = "INSERT INTO responsaveis (nome, rg, cpf, telefone, datanasc, endereco, parentesco) VALUES "
+				+ "(?, ?, ?, ? , ?, ?, ?)";
+
 //		Statement stmt = null;
 //		String sql = "INSERT INTO responsaveis " +
 //					 "(Nome, RG, CPF, Telefone, DataNasc, Endere�o, Parentesco) " +
@@ -32,22 +35,22 @@ public class ResponsavelRepository {
 			ps.setDate(5, java.sql.Date.valueOf(responsavel.getDatanasc()));
 			ps.setString(6, responsavel.getEndereco());
 			ps.setString(7, responsavel.getParentesco());
-			
+
 			ps.executeUpdate();
-			
-		} catch (SQLException ex){
+
+		} catch (SQLException ex) {
 			// tratar erros
 			System.out.println("Erro:" + ex.getMessage());
 		} finally {
-			
+
 		}
 	}
 
 	public Responsavel find(int id) {
 		Statement stmt = null;
-		String sql = "Select * from responsaveis where cod_resp ="+id;
+		String sql = "Select * from responsaveis where cod_resp =" + id;
 		ResultSet rs = null;
-		
+
 		int CodResp;
 		String nome;
 		String RG;
@@ -61,7 +64,7 @@ public class ResponsavelRepository {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				
+
 				CodResp = rs.getInt("cod_resp");
 				nome = rs.getString("nome");
 				RG = rs.getString("rg");
@@ -70,37 +73,27 @@ public class ResponsavelRepository {
 				datanasc = rs.getDate("datanasc").toLocalDate();
 				endereco = rs.getString("endereco");
 				parentesco = rs.getString("parentesco");
-				
+
 				responsavel = new Responsavel(nome, CPF, RG, telefone, datanasc, endereco, parentesco);
 				responsavel.setCodResponsavel(CodResp);
-				
-//				System.out.println(CodResp +" "+ nome +" "+ RG +" "+ CPF +" "+ Telefone +" "+ datanasc +" "+ Endereco +" "+ Parentesco);
-				
+
 			}
-		} catch (SQLException ex){
-			// tratar erros
-			System.out.println("Erro:" + ex.getMessage());
-			
+		} catch (SQLException ex) {
+			final JFrame popup = new JFrame();
+			JOptionPane.showMessageDialog(popup, "Responsável não encontrado, verifique o valor do código",
+					"Erro na responsável", JOptionPane.ERROR_MESSAGE);
+			return null;
 		} finally {
-			
 		}
-		
 		return responsavel;
-		
+
 	}
-	
+
 	public void update(int id, Responsavel resp) {
-//		Scanner scan = new Scanner(System.in);
-//		
-//		System.out.println("Digite o novo nome");
-//		String novoNome = scan.next();
-//		System.out.println("Digite um novo telefone");
-//		String novoTel = scan.next();
-//		scan.close();
-		
+
 		PreparedStatement ps = null;
 		String sql = "UPDATE responsaveis SET nome=? , rg= ?, cpf=? , telefone=? , datanasc=? , endereco=? , parentesco=? where cod_resp = ?";
-				
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, resp.getNome());
@@ -112,30 +105,29 @@ public class ResponsavelRepository {
 			ps.setString(7, resp.getParentesco());
 			ps.setInt(8, id);
 			ps.executeUpdate();
-			
-		} catch (SQLException ex){
-			// tratar erros
+
+		} catch (SQLException ex) {
 			System.out.println("Erro:" + ex.getMessage());
-			
+
 		} finally {
-			
+
 		}
 	}
-	
+
 	public void delete(int id) {
 		Statement stmt = null;
-		String sql = "Delete from responsaveis where cod_resp = "+id;
-		
+		String sql = "Delete from responsaveis where cod_resp = " + id;
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			// tratar erros
 			System.out.println("Erro:" + ex.getMessage());
-			
+
 		} finally {
-			
+
 		}
 	}
-	
+
 }

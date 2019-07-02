@@ -71,6 +71,7 @@ public class PesquisaPessoa extends JFrame {
 	 * Create the frame.
 	 */
 	public PesquisaPessoa() {
+		final JFrame popup = new JFrame();
 		setTitle("Pesquisa de pessoa");
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -365,10 +366,22 @@ public class PesquisaPessoa extends JFrame {
 		btnProcurar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				int vID;
+				try {
+					vID = Integer.parseInt(id.getText());
+				} catch (RuntimeException e) {
+					JOptionPane.showMessageDialog(popup, "O valor digitado não é válido", "Erro no valor",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				if (rdbtnAluno.isSelected()) {
-					int vID = Integer.parseInt(id.getText());
 					AlunoController control = new AlunoController();
 					aluno = control.find(vID);
+
+					if (aluno == null) {
+						return;
+					}
 
 					nome.setText(aluno.getNome());
 					cpf.setText(aluno.getCpf());
@@ -381,9 +394,12 @@ public class PesquisaPessoa extends JFrame {
 					resp2.setText((String.valueOf(aluno.getResponsavel2())));
 
 				} else if (rdbtnResponsavel.isSelected()) {
-					int vID = Integer.parseInt(id.getText());
 					ResponsavelController control = new ResponsavelController();
 					responsavel = control.find(vID);
+
+					if (responsavel == null) {
+						return;
+					}
 
 					nome.setText(responsavel.getNome());
 					cpf.setText(responsavel.getCpf());

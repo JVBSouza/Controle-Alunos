@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import modelo.Aluno;
 
 public class AlunoRepository {
@@ -36,7 +39,12 @@ public class AlunoRepository {
 			ps.executeUpdate();
 			
 		} catch (SQLException ex){
-			System.out.println("Erro:" + ex.getMessage());
+			final JFrame popup = new JFrame();
+			JOptionPane.showMessageDialog(popup,
+				    "Os valores inseridos não constam no banco de dados. Conferir valores",
+				    "Erro nos dados",
+				    JOptionPane.ERROR_MESSAGE);
+			return;
 		} finally { }
 	}
 
@@ -72,8 +80,12 @@ public class AlunoRepository {
 				aluno.setMatricula(valorMatricula);
 			}
 		} catch (SQLException ex){
-			// tratar erros
-			System.out.println("Erro:" + ex.getMessage());
+			final JFrame popup = new JFrame();
+			JOptionPane.showMessageDialog(popup,
+					"Aluno não encontrado, verifique a matrícula",
+					"Erro na matrícula",
+					JOptionPane.ERROR_MESSAGE);
+			return null;
 		} finally {	}
 		
 		return aluno;
