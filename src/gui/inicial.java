@@ -25,7 +25,7 @@ public class inicial {
 
 	private JFrame frmTelaInicial;
 	private JFrame cadastroRegistro;
-	private JFrame escolherCadastrar;
+	//EscolherCadastrar
 	private JFrame escolherPesquisa;
 	private JFrame relatorio;
 	private JTextField user;
@@ -52,7 +52,6 @@ public class inicial {
 	 */
 	public inicial() {
 		initialize();
-		this.escolherCadastrar = new EscolherCadastrar(); //
 		this.cadastroRegistro = new CadastroRegistro();
 		this.escolherPesquisa = new EscolherPesquisa();
 		this.relatorio = new Relatorio();
@@ -72,11 +71,12 @@ public class inicial {
 		btnCadastrarPessoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				EscolherCadastrar escolherCadastrar = new EscolherCadastrar();
 				escolherCadastrar.setVisible(true); //
 
 			}
 		});
-		btnCadastrarPessoa.setBounds(135, 110, 115, 40);
+		btnCadastrarPessoa.setBounds(10, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnCadastrarPessoa);
 
 		JButton btnPesquisarPessoa = new JButton("Pesquisar");
@@ -101,7 +101,7 @@ public class inicial {
 				cadastroRegistro.setVisible(true);
 			}
 		});
-		btnRegistrar.setBounds(10, 110, 115, 40);
+		btnRegistrar.setBounds(135, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnRegistrar);
 
 		JLabel lblUsurio = new JLabel("Usuário");

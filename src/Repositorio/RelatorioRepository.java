@@ -52,7 +52,7 @@ public class RelatorioRepository {
 				String coluna2 = rs.getString("nome");
 				String coluna3 = rs.getString("hora");
 				String coluna4 = rs.getString("tipo");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3 + ";" + coluna4;
+				String linha = coluna1 + "	" + coluna2 + "	" + coluna3 + "	" + coluna4;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -60,7 +60,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Matricula;Nome;Data e Hora; Tipo\r\n");
+			fw.write("RELATÓRIO DO SOFTWARE CONTROLE\r\n==============================\r\nDesenvolvido por José e Rafael\r\n==============================\r\n\r\nMatricula	Nome	Data e Hora	Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -88,7 +88,7 @@ public class RelatorioRepository {
 				String coluna2 = rs.getString("hora");
 				String coluna3 = rs.getString("descr");
 				String coluna4 = rs.getString("tipo");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3 + ";" + coluna4;
+				String linha = coluna1 + "	" + coluna2 + "	" + coluna3 + "	" + coluna4;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -129,7 +129,7 @@ public class RelatorioRepository {
 			while (rs.next()) {
 				String coluna1 = rs.getString("matricula");
 				String coluna2 = rs.getString("nome");
-				String linha = coluna1 + ";" + coluna2;
+				String linha = coluna1 + "	" + coluna2;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -137,7 +137,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Matrícula;Nome\r\n");
+			fw.write("RELATÓRIO DO SOFTWARE CONTROLE\r\nMatrícula	Nome\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -169,7 +169,7 @@ public class RelatorioRepository {
 				String coluna2 = rs.getString("Nome Responsável");
 				String coluna3 = rs.getString("data");
 				String coluna4 = rs.getString("descr");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3 + ";" + coluna4;
+				String linha = coluna1 + "	" + coluna2 + "	" + coluna3 + "	" + coluna4;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -177,7 +177,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Nome do Aluno;Nome do Responsável;Data;Descrição\r\n");
+			fw.write("Nome do Aluno	Nome do Responsável	Data	Descrição\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -200,7 +200,7 @@ public class RelatorioRepository {
 				String coluna1 = rs.getString("nome");
 				String coluna2 = rs.getString("hora");
 				String coluna3 = rs.getString("tipo");
-				String linha = coluna1 + ";" + coluna2 + ";" + coluna3;
+				String linha = coluna1 + "	" + coluna2 + "	" + coluna3;
 				saida.add(linha);
 			}
 		} catch (SQLException ex) {
@@ -208,7 +208,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Nome do operador;Hora;Tipo\r\n");
+			fw.write("Nome do operador	Hora	Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();

@@ -21,11 +21,11 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class Relatorio extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -52,7 +52,7 @@ public class Relatorio extends JFrame {
 		
 		setTitle("Exportação dos relatórios");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 435, 300);
+		setBounds(100, 100, 530, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,24 +66,10 @@ public class Relatorio extends JFrame {
 				control.gravarAluno(local);
 			}
 		});
-		btnExportSimples.setBounds(10, 70, 195, 50);
+		btnExportSimples.setBounds(22, 108, 210, 40);
 		contentPane.add(btnExportSimples);
 		
-		textField = new JTextField();
-		textField.setBounds(100, 30, 257, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("Diretório:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(10, 30, 80, 20);
-		contentPane.add(lblNewLabel);
-		
-		JButton button = new JButton("...");
-		button.setBounds(367, 30, 30, 20);
-		contentPane.add(button);
-		
-		JButton btnIrregular = new JButton("Relatório registros Irregulares");
+		JButton btnIrregular = new JButton("Relatório registros irregulares");
 		btnIrregular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Integer matricula = Integer.valueOf(JOptionPane.showInputDialog(popup,
@@ -93,10 +79,10 @@ public class Relatorio extends JFrame {
 				control.gravarIrregular(local, matricula);
 			}
 		});
-		btnIrregular.setBounds(100, 190, 220, 50);
+		btnIrregular.setBounds(22, 210, 210, 40);
 		contentPane.add(btnIrregular);
 		
-		JButton btnTurma = new JButton("Relatório Alunos em Turma");
+		JButton btnTurma = new JButton("Relatório alunos em turma");
 		btnTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Integer turma = Integer.valueOf(JOptionPane.showInputDialog(popup,
@@ -106,10 +92,10 @@ public class Relatorio extends JFrame {
 				control.gravarTurma(local, turma);
 			}
 		});
-		btnTurma.setBounds(215, 70, 195, 50);
+		btnTurma.setBounds(242, 108, 210, 40);
 		contentPane.add(btnTurma);
 		
-		JButton btnRelatrioSadaMs = new JButton("Relatório registros Mês");
+		JButton btnRelatrioSadaMs = new JButton("Relatório autorizações mês");
 		btnRelatrioSadaMs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Integer mes = Integer.valueOf(JOptionPane.showInputDialog(popup,
@@ -119,7 +105,7 @@ public class Relatorio extends JFrame {
 				control.gravarMes(local, mes);
 			}
 		});
-		btnRelatrioSadaMs.setBounds(215, 130, 195, 50);
+		btnRelatrioSadaMs.setBounds(242, 159, 210, 40);
 		contentPane.add(btnRelatrioSadaMs);
 		
 		JButton btnUser = new JButton("Relatório usuário");
@@ -132,8 +118,14 @@ public class Relatorio extends JFrame {
 				control.gravarUser(local, user);
 			}
 		});
-		btnUser.setBounds(10, 130, 195, 50);
+		btnUser.setBounds(22, 159, 210, 40);
 		contentPane.add(btnUser);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(Relatorio.class.getResource("/images/relatorio.png")));
+		lblNewLabel.setBounds(22, 11, 430, 86);
+		contentPane.add(lblNewLabel);
 	}
 	
 	public static File escolherArquivo() {
