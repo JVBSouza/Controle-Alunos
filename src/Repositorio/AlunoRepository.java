@@ -128,7 +128,7 @@ public class AlunoRepository {
 	public int count() {
 		int count = 0;
 		Statement stmt = null;
-		String sql = "SELECT count(*) as total from alunos";
+		String sql = "SELECT count(*) as total from alunos where matricula";
 		ResultSet rs = null;
 
 		try (Connection conn = ConexaoBD.getConexao();) {
