@@ -50,7 +50,6 @@ public class ResponsavelRepository {
 		Statement stmt = null;
 		String sql = "Select * from responsaveis where cod_resp =" + id;
 		ResultSet rs = null;
-
 		int CodResp;
 		String nome;
 		String RG;
@@ -64,7 +63,6 @@ public class ResponsavelRepository {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-
 				CodResp = rs.getInt("cod_resp");
 				nome = rs.getString("nome");
 				RG = rs.getString("rg");
@@ -73,18 +71,18 @@ public class ResponsavelRepository {
 				datanasc = rs.getDate("datanasc").toLocalDate();
 				endereco = rs.getString("endereco");
 				parentesco = rs.getString("parentesco");
-
 				responsavel = new Responsavel(nome, CPF, RG, telefone, datanasc, endereco, parentesco);
 				responsavel.setCodResponsavel(CodResp);
-
 			}
 		} catch (SQLException ex) {
+		} finally {
+		}
+		if (responsavel == null) {
 			final JFrame popup = new JFrame();
 			JOptionPane.showMessageDialog(popup, "Responsável não encontrado, verifique o valor do código",
 					"Erro na responsável", JOptionPane.ERROR_MESSAGE);
-			return null;
-		} finally {
 		}
+
 		return responsavel;
 
 	}
