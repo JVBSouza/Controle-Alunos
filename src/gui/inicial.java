@@ -6,6 +6,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import controle.ResponsavelController;
+import controle.UsuarioController;
+import modelo.Usuario;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -15,6 +17,8 @@ import java.awt.event.MouseEvent;
 import java.io.FileWriter;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -25,11 +29,11 @@ public class inicial {
 
 	private JFrame frmTelaInicial;
 	private JFrame cadastroRegistro;
-	//EscolherCadastrar
+	private JFrame escolherCadastrar;
 	private JFrame escolherPesquisa;
 	private JFrame relatorio;
 	private JTextField user;
-	private JTextField senha;
+	private JPasswordField senha;
 
 	/**
 	 * Launch the application.
@@ -52,6 +56,7 @@ public class inicial {
 	 */
 	public inicial() {
 		initialize();
+		this.escolherCadastrar = new EscolherCadastrar(); //
 		this.cadastroRegistro = new CadastroRegistro();
 		this.escolherPesquisa = new EscolherPesquisa();
 		this.relatorio = new Relatorio();
@@ -67,41 +72,35 @@ public class inicial {
 		frmTelaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTelaInicial.getContentPane().setLayout(null);
 
-		JButton btnCadastrarPessoa = new JButton("Cadastrar");
-		btnCadastrarPessoa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				EscolherCadastrar escolherCadastrar = new EscolherCadastrar();
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setEnabled(false);
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				escolherCadastrar.setVisible(true); //
 
 			}
 		});
-		btnCadastrarPessoa.setBounds(10, 110, 115, 40);
-		frmTelaInicial.getContentPane().add(btnCadastrarPessoa);
+		btnCadastrar.setBounds(135, 110, 115, 40);
+		frmTelaInicial.getContentPane().add(btnCadastrar);
 
-		JButton btnPesquisarPessoa = new JButton("Pesquisar");
-		btnPesquisarPessoa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setEnabled(false);
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				escolherPesquisa.setVisible(true);
 			}
 		});
-		btnPesquisarPessoa.setBounds(260, 110, 115, 40);
-		frmTelaInicial.getContentPane().add(btnPesquisarPessoa);
+		btnPesquisar.setBounds(260, 110, 115, 40);
+		frmTelaInicial.getContentPane().add(btnPesquisar);
 
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setEnabled(false);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cadastroRegistro.setVisible(true);
 			}
 		});
-		btnRegistrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				cadastroRegistro.setVisible(true);
-			}
-		});
-		btnRegistrar.setBounds(135, 110, 115, 40);
+		btnRegistrar.setBounds(10, 110, 115, 40);
 		frmTelaInicial.getContentPane().add(btnRegistrar);
 
 		JLabel lblUsurio = new JLabel("Usuário");
@@ -119,15 +118,15 @@ public class inicial {
 		frmTelaInicial.getContentPane().add(user);
 		user.setColumns(10);
 
-		senha = new JTextField();
+		senha = new JPasswordField();
 		senha.setColumns(10);
 		senha.setBounds(200, 61, 86, 20);
 		frmTelaInicial.getContentPane().add(senha);
 		//
 		JButton btnRelatorio = new JButton("Relatório");
-		btnRelatorio.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnRelatorio.setEnabled(false);
+		btnRelatorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				relatorio.setVisible(true);
 			}
 		});
@@ -139,6 +138,45 @@ public class inicial {
 		lblNewLabel.setIcon(new ImageIcon(inicial.class.getResource("/images/final.PNG")));
 		lblNewLabel.setBounds(0, 171, 514, 65);
 		frmTelaInicial.getContentPane().add(lblNewLabel);
+
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final JFrame popup = new JFrame();
+				int idUser;
+				try {
+					idUser = Integer.parseInt(user.getText());
+				} catch (RuntimeException e) {
+					JOptionPane.showMessageDialog(popup, "O valor digitado não é válido", "Erro no usuário",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				UsuarioController control = new UsuarioController();
+				Usuario usuario = control.find(idUser);
+				if (usuario.getSenha().equals(senha.getText())) {
+					if(usuario.getSetor().equals("Operador")) {
+						btnRegistrar.setEnabled(true);
+						btnPesquisar.setEnabled(true);
+					} else if (usuario.getSetor().equals("Secretaria")) {
+						btnCadastrar.setEnabled(true);
+						btnPesquisar.setEnabled(true);
+						btnRelatorio.setEnabled(true);
+					} else if (usuario.getSetor().equals("Administrador")) {
+						btnRegistrar.setEnabled(true);
+						btnCadastrar.setEnabled(true);
+						btnPesquisar.setEnabled(true);
+						btnRelatorio.setEnabled(true);
+					} 
+				} else {
+					JOptionPane.showMessageDialog(popup, "Senha incorreta", "ERRO!",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+
+		});
+		btnLogin.setBounds(297, 29, 89, 52);
+		frmTelaInicial.getContentPane().add(btnLogin);
 
 	}
 }
