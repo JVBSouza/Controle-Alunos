@@ -16,14 +16,14 @@ import modelo.Aluno;
 public class AlunoRepository {
 
 	public void persist(Aluno aluno) {
-				
+
 		PreparedStatement ps = null;
-		String sql = "INSERT INTO alunos (matricula, nome, rg, cpf, telefone, datanasc, endereco, responsavel_1, responsavel_2) VALUES " +
-					"(?, ?, ?, ? , ?, ?, ?, ?, ?)";
-		
+		String sql = "INSERT INTO alunos (matricula, nome, rg, cpf, telefone, datanasc, endereco, responsavel_1, responsavel_2) VALUES "
+				+ "(?, ?, ?, ? , ?, ?, ?, ?, ?)";
+
 		int count = count();
 		int numero = 20190101 + count;
-		
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 
 			ps = conn.prepareStatement(sql);
@@ -37,20 +37,19 @@ public class AlunoRepository {
 			ps.setInt(8, aluno.getResponsavel1());
 			ps.setInt(9, aluno.getResponsavel2());
 			ps.executeUpdate();
-			
-		} catch (SQLException ex){
+
+		} catch (SQLException ex) {
 			final JFrame popup = new JFrame();
-			JOptionPane.showMessageDialog(popup,
-				    "Os valores inseridos não constam no banco de dados. Conferir valores",
-				    "Erro nos dados",
-				    JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(popup, "Os valores inseridos não constam no banco de dados. Conferir valores",
+					"Erro nos dados", JOptionPane.ERROR_MESSAGE);
 			return;
-		} finally { }
+		} finally {
+		}
 	}
 
 	public Aluno find(int matricula) {
 		Statement stmt = null;
-		String sql = "SELECT * FROM alunos where matricula ="+matricula;
+		String sql = "SELECT * FROM alunos where matricula =" + matricula;
 		ResultSet rs = null;
 		int valorMatricula;
 		String nome;
@@ -62,7 +61,7 @@ public class AlunoRepository {
 		int resp1;
 		int resp2;
 		Aluno aluno = null;
-		
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -79,22 +78,22 @@ public class AlunoRepository {
 				aluno = new Aluno(nome, cpf, rg, telefone, dataNasc, endereco, resp1, resp2);
 				aluno.setMatricula(valorMatricula);
 			}
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
+
+		} finally {
+		}
+		if (aluno == null) {
 			final JFrame popup = new JFrame();
-			JOptionPane.showMessageDialog(popup,
-					"Aluno não encontrado, verifique a matrícula",
-					"Erro na matrícula",
+			JOptionPane.showMessageDialog(popup, "Aluno não encontrado, verifique a matrícula", "Erro na matrícula",
 					JOptionPane.ERROR_MESSAGE);
-			return null;
-		} finally {	}
-		
+		}
 		return aluno;
 	}
 
 	public void update(int matricula, Aluno aluno) {
 		PreparedStatement ps = null;
 		String sql = "UPDATE alunos SET nome=?, rg= ?, cpf=?, telefone=?, datanasc=?, endereco=? where matricula = ?";
-				
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, aluno.getNome());
@@ -105,42 +104,44 @@ public class AlunoRepository {
 			ps.setString(6, aluno.getEndereco());
 			ps.setInt(7, matricula);
 			ps.executeUpdate();
-			
-		} catch (SQLException ex){
+
+		} catch (SQLException ex) {
 			System.out.println("Erro:" + ex.getMessage());
-		} finally {		}
+		} finally {
+		}
 	}
 
 	public void delete(int matricula) {
 		Statement stmt = null;
-		String sql = "Delete from alunos where matricula = "+matricula;
-		
+		String sql = "Delete from alunos where matricula = " + matricula;
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			System.out.println("Erro:" + ex.getMessage());
-			
-		} finally {}
+
+		} finally {
+		}
 	}
-	
+
 	public int count() {
 		int count = 0;
 		Statement stmt = null;
 		String sql = "SELECT count(*) as total from alunos";
 		ResultSet rs = null;
-				
+
 		try (Connection conn = ConexaoBD.getConexao();) {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				count = rs.getInt("total");				
+				count = rs.getInt("total");
 			}
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			System.out.println("Erro:" + ex.getMessage());
-		} finally {}
-		
+		} finally {
+		}
+
 		return count;
 	}
 }
-

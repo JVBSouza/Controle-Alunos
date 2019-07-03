@@ -167,7 +167,7 @@ public class CadastroRegistro extends JFrame {
 				}				
 				LocalDateTime vData = LocalDateTime.parse(data.getText(),formatter);
 				String vTipo;
-				int vAutoriza = 0;
+				int vAutoriza;
 				Registro registro;
 				if (rdEntrada.isSelected()) {
 					vTipo = "Entrada";
@@ -175,7 +175,16 @@ public class CadastroRegistro extends JFrame {
 					vTipo = "Saída";
 				}
 				if (rdYes.isSelected()) {
-					vAutoriza = Integer.parseInt(autoriza.getText());
+					try {
+						vAutoriza = Integer.parseInt(autoriza.getText());	
+					}
+					catch(RuntimeException e) {
+						JOptionPane.showMessageDialog(popup,
+							    "O valor inserido não é válido",
+							    "Erro na autorização",
+							    JOptionPane.ERROR_MESSAGE);
+						return;
+					}							
 					registro = new Registro(vUser, vAutoriza,vMatricula, vData, vTipo);
 				} else {
 					registro = new Registro(vUser, vMatricula, vData, vTipo);
