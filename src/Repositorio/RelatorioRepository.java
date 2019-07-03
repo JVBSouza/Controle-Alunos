@@ -116,7 +116,7 @@ public class RelatorioRepository {
 		}
 
 		String sql = "Select alunos.matricula, alunos.nome " + "FROM alunos " + 
-		" WHERE alunos.matricula like '%"+sturma+"%'";
+		" WHERE alunos.matricula like '2019"+sturma+"%'";
 
 		// Aqui ta pedindo a matrícula
 		// Então tem que pedir a matrícula em algum lugar
@@ -136,7 +136,7 @@ public class RelatorioRepository {
 			System.out.println("Erro:" + ex.getMessage());
 		} finally {
 		}
-		System.out.println(saida);
+
 		try (FileWriter fw = new FileWriter(arquivo)) {
 			fw.write("SOFTWARE CONTROLE\r\n**\r\nDesenvolvido por José e Rafael\r\n**\r\nRELATÓRIO DE TURMA\r\n**\r\nMatrícula	Nome\r\n");
 			for (String linha : saida) {

@@ -47,9 +47,9 @@ public class Relatorio extends JFrame {
 	 * Create the frame.
 	 */
 	public Relatorio() {
-		
+
 		final JFrame popup = new JFrame();
-		
+
 		setTitle("Exportação dos relatórios");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 300);
@@ -57,7 +57,7 @@ public class Relatorio extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnExportSimples = new JButton("Relatório registros alunos");
 		btnExportSimples.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -68,12 +68,12 @@ public class Relatorio extends JFrame {
 		});
 		btnExportSimples.setBounds(22, 108, 210, 40);
 		contentPane.add(btnExportSimples);
-		
+
 		JButton btnIrregular = new JButton("Relatório registros irregulares");
 		btnIrregular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer matricula = Integer.valueOf(JOptionPane.showInputDialog(popup,
-                        "Qual matricula deseja pesquisar?", null));
+				Integer matricula = Integer
+						.valueOf(JOptionPane.showInputDialog(popup, "Qual matricula deseja pesquisar?", null));
 				File local = escolherArquivo();
 				RelatorioController control = new RelatorioController();
 				control.gravarIrregular(local, matricula);
@@ -81,12 +81,12 @@ public class Relatorio extends JFrame {
 		});
 		btnIrregular.setBounds(22, 210, 210, 40);
 		contentPane.add(btnIrregular);
-		
+
 		JButton btnTurma = new JButton("Relatório alunos em turma");
 		btnTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer turma = Integer.valueOf(JOptionPane.showInputDialog(popup,
-                        "Qual turma deseja pesquisar?", null));
+				Integer turma = Integer
+						.valueOf(JOptionPane.showInputDialog(popup, "Qual turma deseja pesquisar?", null));
 				File local = escolherArquivo();
 				RelatorioController control = new RelatorioController();
 				control.gravarTurma(local, turma);
@@ -94,12 +94,11 @@ public class Relatorio extends JFrame {
 		});
 		btnTurma.setBounds(242, 108, 210, 40);
 		contentPane.add(btnTurma);
-		
+
 		JButton btnRelatrioSadaMs = new JButton("Relatório autorizações mês");
 		btnRelatrioSadaMs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer mes = Integer.valueOf(JOptionPane.showInputDialog(popup,
-                        "Qual mês deseja pesquisar?", null));
+				Integer mes = Integer.valueOf(JOptionPane.showInputDialog(popup, "Qual mês deseja pesquisar?", null));
 				File local = escolherArquivo();
 				RelatorioController control = new RelatorioController();
 				control.gravarMes(local, mes);
@@ -107,12 +106,12 @@ public class Relatorio extends JFrame {
 		});
 		btnRelatrioSadaMs.setBounds(242, 159, 210, 40);
 		contentPane.add(btnRelatrioSadaMs);
-		
+
 		JButton btnUser = new JButton("Relatório usuário");
 		btnUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer user = Integer.valueOf(JOptionPane.showInputDialog(popup,
-                        "Qual operador deseja pesquisar?", null));
+				Integer user = Integer
+						.valueOf(JOptionPane.showInputDialog(popup, "Qual operador deseja pesquisar?", null));
 				File local = escolherArquivo();
 				RelatorioController control = new RelatorioController();
 				control.gravarUser(local, user);
@@ -120,14 +119,14 @@ public class Relatorio extends JFrame {
 		});
 		btnUser.setBounds(22, 159, 210, 40);
 		contentPane.add(btnUser);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Relatorio.class.getResource("/images/relatorio.png")));
 		lblNewLabel.setBounds(22, 11, 430, 86);
 		contentPane.add(lblNewLabel);
 	}
-	
+
 	public static File escolherArquivo() {
 		File relatorio = null;
 		JFileChooser fc = new JFileChooser();
