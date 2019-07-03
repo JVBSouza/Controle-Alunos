@@ -41,7 +41,7 @@ public class RelatorioRepository {
 	public static void gravarAluno(File arquivo) {
 		Statement stmt = null;
 		String sql = "SELECT alunos.matricula, alunos.nome, registros.hora, registros.tipo "
-				+ "FROM registros, alunos, autorizacao " + "WHERE registros.matricula = alunos.matricula";
+				+ "FROM registros, alunos " + "WHERE registros.matricula = alunos.matricula";
 		ResultSet rs = null;
 		List<String> saida = new LinkedList<String>();
 		try (Connection conn = ConexaoBD.getConexao();) {
@@ -60,7 +60,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("RELATÓRIO DO SOFTWARE CONTROLE\r\n==============================\r\nDesenvolvido por José e Rafael\r\n==============================\r\n\r\nMatricula	Nome	Data e Hora	Tipo\r\n");
+			fw.write("SOFTWARE CONTROLE\r\n**\r\nDesenvolvido por José e Rafael\r\n**\r\nRELATÓRIO DE REGISTRO DOS ALUNOS\r\n**\r\n\r\nMatricula	Nome	Data e Hora	Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -96,7 +96,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Nome;Horário;Descrição;Tipo\r\n");
+			fw.write("SOFTWARE CONTROLE\r\n**\r\nDesenvolvido por José e Rafael\r\n**\r\nRELATÓRIO DE REGISTROS IRREGULARES\r\n**\r\n\r\nNome	Horário	Descrição	Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -137,7 +137,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("RELATÓRIO DO SOFTWARE CONTROLE\r\nMatrícula	Nome\r\n");
+			fw.write("SOFTWARE CONTROLE\r\n**\r\nDesenvolvido por José e Rafael\r\n**\r\nRELATÓRIO DE TURMA\r\n**\r\nMatrícula	Nome\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -177,7 +177,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Nome do Aluno	Nome do Responsável	Data	Descrição\r\n");
+			fw.write("SOFTWARE CONTROLE\r\n**\r\nDesenvolvido por José e Rafael\r\n**\r\nRELATÓRIO DE AUTORIZAÇÕES DO MÊS\r\n**\r\nNome do Aluno	Nome do Responsável	Data	Descrição\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
@@ -208,7 +208,7 @@ public class RelatorioRepository {
 		} finally {
 		}
 		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("Nome do operador	Hora	Tipo\r\n");
+			fw.write("SOFTWARE CONTROLE\r\n**\r\nDesenvolvido por José e Rafael\r\n**\r\nRELATÓRIO DE USUÁRIO\r\n**\r\nNome do operador	Hora	Tipo\r\n");
 			for (String linha : saida) {
 				fw.write(linha + "\r\n");
 				fw.flush();
