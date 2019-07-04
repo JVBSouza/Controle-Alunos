@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -26,17 +28,17 @@ public class RelatorioRepository {
 //	}
 
 	// gravar arquivo
-	public void gravar(File arquivo) {
-		try (FileWriter fw = new FileWriter(arquivo)) {
-			fw.write("COLUNA 1;COLUNA 2;COLUNA3\r\n");
-			fw.write("José;Costa;43433\r\n");
-			fw.write("Joao;Rafael;43433\r\n");
-			fw.write("Pedro;Manoel;43433\r\n");
-			fw.flush();
-
-		} catch (IOException ex) {
-		}
-	}
+//	public void gravar(File arquivo) {
+//		try (FileWriter fw = new FileWriter(arquivo)) {
+//			fw.write("COLUNA 1;COLUNA 2;COLUNA3\r\n");
+//			fw.write("José;Costa;43433\r\n");
+//			fw.write("Joao;Rafael;43433\r\n");
+//			fw.write("Pedro;Manoel;43433\r\n");
+//			fw.flush();
+//
+//		} catch (IOException ex) {
+//		}
+//	}
 
 	public static void gravarAluno(File arquivo) {
 		Statement stmt = null;
@@ -66,6 +68,10 @@ public class RelatorioRepository {
 				fw.flush();
 			}
 		} catch (IOException ex) {
+			final JFrame popup = new JFrame();
+			JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+					JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 	}
 

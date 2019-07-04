@@ -62,6 +62,11 @@ public class Relatorio extends JFrame {
 		btnExportSimples.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				File local = escolherArquivo();
+				if (local == null) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				RelatorioController control = new RelatorioController();
 				control.gravarAluno(local);
 			}
@@ -72,9 +77,22 @@ public class Relatorio extends JFrame {
 		JButton btnIrregular = new JButton("Relatório registros irregulares");
 		btnIrregular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer matricula = Integer
-						.valueOf(JOptionPane.showInputDialog(popup, "Qual matricula deseja pesquisar?", null));
+				Integer matricula;
+				try {
+					matricula = Integer
+							.valueOf(JOptionPane.showInputDialog(popup, "Qual matricula deseja pesquisar?", null));
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				File local = escolherArquivo();
+				if (local == null) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				RelatorioController control = new RelatorioController();
 				control.gravarIrregular(local, matricula);
 			}
@@ -85,9 +103,21 @@ public class Relatorio extends JFrame {
 		JButton btnTurma = new JButton("Relatório alunos em turma");
 		btnTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer turma = Integer
-						.valueOf(JOptionPane.showInputDialog(popup, "Qual turma deseja pesquisar?", null));
+				Integer turma = null;
+				try {
+					turma = Integer.valueOf(JOptionPane.showInputDialog(popup, "Qual turma deseja pesquisar?", null));
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				File local = escolherArquivo();
+				if (local == null) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				RelatorioController control = new RelatorioController();
 				control.gravarTurma(local, turma);
 			}
@@ -98,8 +128,20 @@ public class Relatorio extends JFrame {
 		JButton btnRelatrioSadaMs = new JButton("Relatório autorizações mês");
 		btnRelatrioSadaMs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer mes = Integer.valueOf(JOptionPane.showInputDialog(popup, "Qual mês deseja pesquisar?", null));
+				Integer mes;
+				try {
+					mes = Integer.valueOf(JOptionPane.showInputDialog(popup, "Qual mês deseja pesquisar?", null));
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				File local = escolherArquivo();
+				if (local == null) {
+					JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				RelatorioController control = new RelatorioController();
 				control.gravarMes(local, mes);
 			}
@@ -129,15 +171,21 @@ public class Relatorio extends JFrame {
 
 	public static File escolherArquivo() {
 		File relatorio = null;
-		JFileChooser fc = new JFileChooser();
-		int resp = fc.showSaveDialog(null);
-		// fc.setAcceptAllFileFilterUsed(false);
-		FileFilter csv = new FileNameExtensionFilter("comma separated value", "csv");
-		fc.addChoosableFileFilter(csv);
-		if (resp == JFileChooser.APPROVE_OPTION) {
-			relatorio = fc.getSelectedFile();
+		try {
+			JFileChooser fc = new JFileChooser();
+			int resp = fc.showSaveDialog(null);
+			// fc.setAcceptAllFileFilterUsed(false);
+			FileFilter csv = new FileNameExtensionFilter("comma separated value", "csv");
+			fc.addChoosableFileFilter(csv);
+			if (resp == JFileChooser.APPROVE_OPTION) {
+				relatorio = fc.getSelectedFile();
+			}
+		} catch (Exception ex) {
+			final JFrame popup = new JFrame();
+			JOptionPane.showMessageDialog(popup, "Falha ao gerar o relatório", "Erro nos dados",
+					JOptionPane.ERROR_MESSAGE);
+			return null;
 		}
-
 		return relatorio;
 
 		// Para adicionar textbox com file em vez de fazer trocentos botões
